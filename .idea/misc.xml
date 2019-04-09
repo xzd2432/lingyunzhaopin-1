@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/ly-framework-common/pom.xml" />
+        <option value="$PROJECT_DIR$/ly-framework-model/pom.xml" />
+        <option value="$PROJECT_DIR$/ly-framework-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/ly-framework-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/ly-service-api/pom.xml" />
+        <option value="$PROJECT_DIR$/ly-service-manage-cms/pom.xml" />
+        <option value="$PROJECT_DIR$/ly-web-manager-cms/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="1.8 (1)" project-jdk-type="JavaSDK" />
+</project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lingyunzhaopin.iml" filepath="$PROJECT_DIR$/.idea/lingyunzhaopin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ly-framework-common/ly-framework-common.iml" filepath="$PROJECT_DIR$/ly-framework-common/ly-framework-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ly-framework-model/ly-framework-model.iml" filepath="$PROJECT_DIR$/ly-framework-model/ly-framework-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ly-framework-parent/ly-framework-parent.iml" filepath="$PROJECT_DIR$/ly-framework-parent/ly-framework-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ly-framework-utils/ly-framework-utils.iml" filepath="$PROJECT_DIR$/ly-framework-utils/ly-framework-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ly-service-api/ly-service-api.iml" filepath="$PROJECT_DIR$/ly-service-api/ly-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ly-service-manage-cms/ly-service-manage-cms.iml" filepath="$PROJECT_DIR$/ly-service-manage-cms/ly-service-manage-cms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ly-web-manager-cms/ly-web-manager-cms.iml" filepath="$PROJECT_DIR$/ly-web-manager-cms/ly-web-manager-cms.iml" />
+    </modules>
+  </component>
+</project>
