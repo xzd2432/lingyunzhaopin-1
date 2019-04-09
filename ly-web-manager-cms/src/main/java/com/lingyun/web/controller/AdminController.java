@@ -19,6 +19,11 @@ public class AdminController {
     public List<Admin> findList() {
         return adminService.findList();
     }
+
+    @RequestMapping("/toAdmin")
+    public String toAdmin(){
+        return "admin";
+    }
 }
 
 
