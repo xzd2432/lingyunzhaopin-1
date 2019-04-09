@@ -1,0 +1,15 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 30001
+spring:
+  application:
+    name: ly-web-manager-cms
+  main:
+    allow-bean-definition-overriding: true
+feign:
+  httpclient:
+    enabled: true
+
