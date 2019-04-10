@@ -1,12 +1,11 @@
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <link th:href="@{/apps/admin/_static/css/admin_header.css}" href="../static/apps/admin/_static/css/admin_header.css" rel="stylesheet" type="text/css">
-    <link th:href="@{/apps/admin/_static/icon/iconfont.css}" href="../static/apps/admin/_static/icon/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="http://try.51eduline.com/apps/admin/_static/css/admin_header.css" rel="stylesheet" type="text/css">
+    <link href="http://try.51eduline.com/apps/admin/_static/icon/iconfont.css" rel="stylesheet" type="text/css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>lingyu招聘</title>
-    <link rel="shortcut icon" th:href="@{/data/upload/2018/0808/14/5b6a91bca0b3b.ico}" href="../static/data/upload/2018/0808/14/5b6a91bca0b3b.ico" type="image/x-icon">
-    <script type="text/javascript" th:src="@{/addons/theme/stv1/_static/js/jquery-1.8.3.min.js}" src="../static/addons/theme/stv1/_static/js/jquery-1.8.3.min.js" ></script>
+    <title>领域招聘（比58神奇的网站）|在线网校系统|在线教育系统|在线教育解决方案|在线教育系统|在线学习系统|在线培训系统</title>
+    <link rel="shortcut icon" href="http://try.51eduline.com/data/upload/2018/0808/14/5b6a91bca0b3b.ico" type="image/x-icon">
+    <script type="text/javascript" src="http://try.51eduline.com/addons/theme/stv1/_static/js/jquery-1.8.3.min.js"></script>
 
     <script type="text/javascript">
         var SITE_URL = 'http://try.51eduline.com';
@@ -79,11 +78,11 @@
                     <a href="http://try.51eduline.com/admin.html"><i class="icon icon-houtai9"></i>管理中心</a>
                 </div>
                 <div class="nav_sub">
-                    您好,辉董&nbsp; | <a target="_blank" href="/">返回前台</a> | <a href="javascript:void(0);" onClick="refresh();">刷新</a> | <a href="http://try.51eduline.com/index.php?app=admin&mod=Public&act=logout">退出</a><br/>
+                    您好,wangshuai&nbsp; | <a target="_blank" href="/">返回前台</a> | <a href="javascript:void(0);" onClick="refresh();">刷新</a> | <a href="http://try.51eduline.com/index.php?app=admin&mod=Public&act=logout">退出</a><br/>
                     <div id="TopTime"></div>
                 </div>
                 <div class="main_nav">
-                    <a id="channel_index" class="on" href="javascript:void(0)" onclick="switchChannel('index');" hidefocus="true" style="outline:none;">首页</a><a id="channel_statistics"  href="javascript:void(0)" onclick="switchChannel('statistics');" hidefocus="true" style="outline:none;">统计</a><a id="channel_content"  href="javascript:void(0)" onclick="switchChannel('content');" hidefocus="true" style="outline:none;">用户</a><a id="channel_course"  href="javascript:void(0)" onclick="switchChannel('course');" hidefocus="true" style="outline:none;">企业</a><a id="channel_finance"  href="javascript:void(0)" onclick="switchChannel('finance');" hidefocus="true" style="outline:none;">岗位</a><a id="channel_school"  href="javascript:void(0)" onclick="switchChannel('school');" hidefocus="true" style="outline:none;">企业</a>            </div>
+                    <a id="channel_index" class="on" href="javascript:void(0)" onclick="switchChannel('index');" hidefocus="true" style="outline:none;">首页</a><a id="channel_system"  href="javascript:void(0)" onclick="switchChannel('system');" hidefocus="true" style="outline:none;">系统</a><a id="channel_statistics"  href="javascript:void(0)" onclick="switchChannel('statistics');" hidefocus="true" style="outline:none;">统计</a><a id="channel_content"  href="javascript:void(0)" onclick="switchChannel('content');" hidefocus="true" style="outline:none;">运营</a><a id="channel_user"  href="javascript:void(0)" onclick="switchChannel('user');" hidefocus="true" style="outline:none;">用户</a><a id="channel_course"  href="javascript:void(0)" onclick="switchChannel('course');" hidefocus="true" style="outline:none;">课堂</a><a id="channel_finance"  href="javascript:void(0)" onclick="switchChannel('finance');" hidefocus="true" style="outline:none;">财务</a><a id="channel_mall"  href="javascript:void(0)" onclick="switchChannel('mall');" hidefocus="true" style="outline:none;">商城</a><a id="channel_school"  href="javascript:void(0)" onclick="switchChannel('school');" hidefocus="true" style="outline:none;">机构</a>            </div>
             </div>
         </td>
     </tr>
@@ -111,223 +110,249 @@
                         </ul>
                     </li>
                 </ul>
+                <ul class="MenuList" id="root_system" style="display:none;">
+                    <!-- 第二级菜单 -->
+                    <li class="treemenu">
+                        <a id="root_10" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('10');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">系统配置</span></a>
+                        <ul id="tree_10" class="submenu">
+                            <!-- 第三级菜单 -->
+                            <li><a id="menu_11" href="javascript:void(0)" onClick="switch_sub_menu('11', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=site&');" class="submenuA" hidefocus="true" style="outline:none;">站点配置</a></li>
+                            <li><a id="menu_12" href="javascript:void(0)" onClick="switch_sub_menu('12', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=setIndex&');" class="submenuA" hidefocus="true" style="outline:none;">首页配置</a></li>
+                            <li><a id="menu_13" href="javascript:void(0)" onClick="switch_sub_menu('13', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=register&');" class="submenuA" hidefocus="true" style="outline:none;">注册配置</a></li>
+                            <li><a id="menu_14" href="javascript:void(0)" onClick="switch_sub_menu('14', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=nav&');" class="submenuA" hidefocus="true" style="outline:none;">头部导航配置</a></li>
+                            <li><a id="menu_15" href="javascript:void(0)" onClick="switch_sub_menu('15', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=footNav&');" class="submenuA" hidefocus="true" style="outline:none;">底部导航配置</a></li>
+                            <li><a id="menu_16" href="javascript:void(0)" onClick="switch_sub_menu('16', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=commentSwitch&');" class="submenuA" hidefocus="true" style="outline:none;">评论开关管理</a></li>
+                            <li><a id="menu_17" href="javascript:void(0)" onClick="switch_sub_menu('17', 'http://try.51eduline.com/index.php?app=admin&mod=Seo&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">网站SEO管理</a></li>
+                            <li><a id="menu_18" href="javascript:void(0)" onClick="switch_sub_menu('18', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=sms&');" class="submenuA" hidefocus="true" style="outline:none;">短信接口配置</a></li>
+                            <li><a id="menu_19" href="javascript:void(0)" onClick="switch_sub_menu('19', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=email&');" class="submenuA" hidefocus="true" style="outline:none;">邮件配置</a></li>
+                            <li><a id="menu_20" href="javascript:void(0)" onClick="switch_sub_menu('20', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=weixin&');" class="submenuA" hidefocus="true" style="outline:none;">公众号配置</a></li>
+                            <li><a id="menu_21" href="javascript:void(0)" onClick="switch_sub_menu('21', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=attach&');" class="submenuA" hidefocus="true" style="outline:none;">附件配置</a></li>
+                            <li><a id="menu_22" href="javascript:void(0)" onClick="switch_sub_menu('22', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=appConfig&');" class="submenuA" hidefocus="true" style="outline:none;">APP下载地址</a></li>
+                            <li><a id="menu_23" href="javascript:void(0)" onClick="switch_sub_menu('23', 'http://try.51eduline.com/index.php?app=admin&mod=Application&act=about&');" class="submenuA" hidefocus="true" style="outline:none;">APP关于我们</a></li>
+                            <li><a id="menu_24" href="javascript:void(0)" onClick="switch_sub_menu('24', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=audit&');" class="submenuA" hidefocus="true" style="outline:none;">过滤配置</a></li>
+                            <li><a id="menu_25" href="javascript:void(0)" onClick="switch_sub_menu('25', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=area&');" class="submenuA" hidefocus="true" style="outline:none;">地区配置</a></li>
+                            <li><a id="menu_26" href="javascript:void(0)" onClick="switch_sub_menu('26', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=notify&');" class="submenuA" hidefocus="true" style="outline:none;">消息配置</a></li>
+                            <li><a id="menu_27" href="javascript:void(0)" onClick="switch_sub_menu('27', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=cacheConfig&');" class="submenuA" hidefocus="true" style="outline:none;">缓存配置</a></li>
+                            <li><a id="menu_28" href="javascript:void(0)" onClick="switch_sub_menu('28', 'http://try.51eduline.com/index.php?app=admin&mod=Apps&act=setPermNode&');" class="submenuA" hidefocus="true" style="outline:none;">权限菜单配置</a></li>
+                        </ul>
+                    </li>
+                    <li class="treemenu">
+                        <a id="root_29" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('29');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">接口维护</span></a>
+                        <ul id="tree_29" class="submenu">
+                            <!-- 第三级菜单 -->
+                            <li><a id="menu_30" href="javascript:void(0)" onClick="switch_sub_menu('30', 'http://try.51eduline.com/index.php?app=admin&mod=Api&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">接口列表</a></li>
+                        </ul>
+                    </li>
+                    <li class="treemenu">
+                        <a id="root_31" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('31');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">支付管理</span></a>
+                        <ul id="tree_31" class="submenu">
+                            <!-- 第三级菜单 -->
+                            <li><a id="menu_32" href="javascript:void(0)" onClick="switch_sub_menu('32', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=alipay&');" class="submenuA" hidefocus="true" style="outline:none;">支付宝支付配置</a></li>
+                            <li><a id="menu_33" href="javascript:void(0)" onClick="switch_sub_menu('33', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=wxpay&');" class="submenuA" hidefocus="true" style="outline:none;">微信支付配置</a></li>
+                            <li><a id="menu_34" href="javascript:void(0)" onClick="switch_sub_menu('34', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=payConfig&');" class="submenuA" hidefocus="true" style="outline:none;">通用支付配置</a></li>
+                            <li><a id="menu_35" href="javascript:void(0)" onClick="switch_sub_menu('35', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=refundConfig&');" class="submenuA" hidefocus="true" style="outline:none;">申请退款配置</a></li>
+                        </ul>
+                    </li>
+                    <li class="treemenu">
+                        <a id="root_36" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('36');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">插件管理</span></a>
+                        <ul id="tree_36" class="submenu">
+                            <!-- 第三级菜单 -->
+                            <li><a id="menu_37" href="javascript:void(0)" onClick="switch_sub_menu('37', 'http://try.51eduline.com/index.php?app=admin&mod=Addons&act=admin&pluginid=3');" class="submenuA" hidefocus="true" style="outline:none;">广告位</a></li>
+                            <li><a id="menu_38" href="javascript:void(0)" onClick="switch_sub_menu('38', 'http://try.51eduline.com/index.php?app=admin&mod=Addons&act=admin&pluginid=4');" class="submenuA" hidefocus="true" style="outline:none;">第三方登录</a></li>
+                        </ul>
+                    </li>
+                    <li class="treemenu">
+                        <a id="root_39" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('39');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">其他配置</span></a>
+                        <ul id="tree_39" class="submenu">
+                            <!-- 第三级菜单 -->
+                            <li><a id="menu_40" href="javascript:void(0)" onClick="switch_sub_menu('40', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminConfig&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">存储配置</a></li>
+                            <li><a id="menu_41" href="javascript:void(0)" onClick="switch_sub_menu('41', 'http://try.51eduline.com/index.php?app=live&mod=AdminConfig&act=baseConfig&');" class="submenuA" hidefocus="true" style="outline:none;">直播配置</a></li>
+                            <li><a id="menu_42" href="javascript:void(0)" onClick="switch_sub_menu('42', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=divideIntoCourseConfig&');" class="submenuA" hidefocus="true" style="outline:none;">分成比例配置</a></li>
+                            <li><a id="menu_43" href="javascript:void(0)" onClick="switch_sub_menu('43', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=youtu&');" class="submenuA" hidefocus="true" style="outline:none;">人脸识别</a></li>
+                            <li><a id="menu_44" href="javascript:void(0)" onClick="switch_sub_menu('44', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=marquee&');" class="submenuA" hidefocus="true" style="outline:none;">跑马灯配置</a></li>
+                            <li><a id="menu_45" href="javascript:void(0)" onClick="switch_sub_menu('45', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=sysConfig&');" class="submenuA" hidefocus="true" style="outline:none;">通用配置</a></li>
+                        </ul>
+                    </li>
+                </ul>
                 <ul class="MenuList" id="root_statistics" style="display:none;">
                     <!-- 第二级菜单 -->
                     <li class="treemenu">
-                        <a id="root_10" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('10');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">统计管理</span></a>
-                        <ul id="tree_10" class="submenu">
+                        <a id="root_46" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('46');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">统计管理</span></a>
+                        <ul id="tree_46" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_11" href="javascript:void(0)" onClick="switch_sub_menu('11', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=visitorCount&');" class="submenuA" hidefocus="true" style="outline:none;">访问统计</a></li>
-                            <li><a id="menu_12" href="javascript:void(0)" onClick="switch_sub_menu('12', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=regCount&');" class="submenuA" hidefocus="true" style="outline:none;">用户注册量统计</a></li>
-                            <li><a id="menu_13" href="javascript:void(0)" onClick="switch_sub_menu('13', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=activeCount&');" class="submenuA" hidefocus="true" style="outline:none;">活跃度统计</a></li>
-                            <li><a id="menu_14" href="javascript:void(0)" onClick="switch_sub_menu('14', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=courseSales&');" class="submenuA" hidefocus="true" style="outline:none;">课程销量统计</a></li>
-                            <li><a id="menu_15" href="javascript:void(0)" onClick="switch_sub_menu('15', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=orderCount&');" class="submenuA" hidefocus="true" style="outline:none;">销量变化</a></li>
-                            <li><a id="menu_16" href="javascript:void(0)" onClick="switch_sub_menu('16', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=vipUserCount&');" class="submenuA" hidefocus="true" style="outline:none;">会员统计</a></li>
-                            <li><a id="menu_17" href="javascript:void(0)" onClick="switch_sub_menu('17', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=profit&');" class="submenuA" hidefocus="true" style="outline:none;">收益统计</a></li>
-                            <li><a id="menu_18" href="javascript:void(0)" onClick="switch_sub_menu('18', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminLearnRecord&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">学习记录统计</a></li>
+                            <li><a id="menu_47" href="javascript:void(0)" onClick="switch_sub_menu('47', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=visitorCount&');" class="submenuA" hidefocus="true" style="outline:none;">访问统计</a></li>
+                            <li><a id="menu_48" href="javascript:void(0)" onClick="switch_sub_menu('48', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=regCount&');" class="submenuA" hidefocus="true" style="outline:none;">用户注册量统计</a></li>
+                            <li><a id="menu_49" href="javascript:void(0)" onClick="switch_sub_menu('49', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=activeCount&');" class="submenuA" hidefocus="true" style="outline:none;">活跃度统计</a></li>
+                            <li><a id="menu_50" href="javascript:void(0)" onClick="switch_sub_menu('50', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=courseSales&');" class="submenuA" hidefocus="true" style="outline:none;">课程销量统计</a></li>
+                            <li><a id="menu_51" href="javascript:void(0)" onClick="switch_sub_menu('51', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=orderCount&');" class="submenuA" hidefocus="true" style="outline:none;">销量变化</a></li>
+                            <li><a id="menu_52" href="javascript:void(0)" onClick="switch_sub_menu('52', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=vipUserCount&');" class="submenuA" hidefocus="true" style="outline:none;">会员统计</a></li>
+                            <li><a id="menu_53" href="javascript:void(0)" onClick="switch_sub_menu('53', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=profit&');" class="submenuA" hidefocus="true" style="outline:none;">收益统计</a></li>
+                            <li><a id="menu_54" href="javascript:void(0)" onClick="switch_sub_menu('54', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminLearnRecord&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">学习记录统计</a></li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="MenuList" id="root_content" style="display:none;">
                     <!-- 第二级菜单 -->
                     <li class="treemenu">
-                        <a id="root_19" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('19');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">营销卡管理</span></a>
-                        <ul id="tree_19" class="submenu">
+                        <a id="root_55" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('55');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">营销卡管理</span></a>
+                        <ul id="tree_55" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_20" href="javascript:void(0)" onClick="switch_sub_menu('20', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminUserCard&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">卡券发放</a></li>
-                            <li><a id="menu_21" href="javascript:void(0)" onClick="switch_sub_menu('21', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminOnlineCard&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">线上卡券管理</a></li>
-                            <li><a id="menu_22" href="javascript:void(0)" onClick="switch_sub_menu('22', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminEntityCard&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">实体卡管理</a></li>
+                            <li><a id="menu_56" href="javascript:void(0)" onClick="switch_sub_menu('56', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminUserCard&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">卡券发放</a></li>
+                            <li><a id="menu_57" href="javascript:void(0)" onClick="switch_sub_menu('57', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminOnlineCard&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">线上卡券管理</a></li>
+                            <li><a id="menu_58" href="javascript:void(0)" onClick="switch_sub_menu('58', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminEntityCard&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">实体卡管理</a></li>
                         </ul>
                     </li>
                     <li class="treemenu">
-                        <a id="root_23" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('23');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">内容管理</span></a>
-                        <ul id="tree_23" class="submenu">
+                        <a id="root_59" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('59');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">内容管理</span></a>
+                        <ul id="tree_59" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_24" href="javascript:void(0)" onClick="switch_sub_menu('24', 'http://try.51eduline.com/index.php?app=news&mod=AdminTopic&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">资讯管理</a></li>
-                            <li><a id="menu_25" href="javascript:void(0)" onClick="switch_sub_menu('25', 'http://try.51eduline.com/index.php?app=admin&mod=Single&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">单页管理</a></li>
-                            <li><a id="menu_26" href="javascript:void(0)" onClick="switch_sub_menu('26', 'http://try.51eduline.com/index.php?app=admin&mod=Content&act=message&');" class="submenuA" hidefocus="true" style="outline:none;">私信管理</a></li>
-                            <li><a id="menu_27" href="javascript:void(0)" onClick="switch_sub_menu('27', 'http://try.51eduline.com/index.php?app=admin&mod=Suggest&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">反馈管理</a></li>
-                            <li><a id="menu_28" href="javascript:void(0)" onClick="switch_sub_menu('28', 'http://try.51eduline.com/index.php?app=admin&mod=SystemMessage&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">系统消息管理</a></li>
-                            <li><a id="menu_29" href="javascript:void(0)" onClick="switch_sub_menu('29', 'http://try.51eduline.com/index.php?app=admin&mod=Verify&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">验证码管理</a></li>
+                            <li><a id="menu_60" href="javascript:void(0)" onClick="switch_sub_menu('60', 'http://try.51eduline.com/index.php?app=news&mod=AdminTopic&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">资讯管理</a></li>
+                            <li><a id="menu_61" href="javascript:void(0)" onClick="switch_sub_menu('61', 'http://try.51eduline.com/index.php?app=admin&mod=Single&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">单页管理</a></li>
+                            <li><a id="menu_62" href="javascript:void(0)" onClick="switch_sub_menu('62', 'http://try.51eduline.com/index.php?app=admin&mod=Content&act=message&');" class="submenuA" hidefocus="true" style="outline:none;">私信管理</a></li>
+                            <li><a id="menu_63" href="javascript:void(0)" onClick="switch_sub_menu('63', 'http://try.51eduline.com/index.php?app=admin&mod=Suggest&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">反馈管理</a></li>
+                            <li><a id="menu_64" href="javascript:void(0)" onClick="switch_sub_menu('64', 'http://try.51eduline.com/index.php?app=admin&mod=SystemMessage&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">系统消息管理</a></li>
+                            <li><a id="menu_65" href="javascript:void(0)" onClick="switch_sub_menu('65', 'http://try.51eduline.com/index.php?app=admin&mod=Verify&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">验证码管理</a></li>
                         </ul>
                     </li>
                     <li class="treemenu">
-                        <a id="root_30" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('30');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">等级头衔管理</span></a>
-                        <ul id="tree_30" class="submenu">
+                        <a id="root_66" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('66');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">等级头衔管理</span></a>
+                        <ul id="tree_66" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_31" href="javascript:void(0)" onClick="switch_sub_menu('31', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminVip&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">会员等级</a></li>
-                            <li><a id="menu_32" href="javascript:void(0)" onClick="switch_sub_menu('32', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminTeacherVip&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">讲师头衔</a></li>
+                            <li><a id="menu_67" href="javascript:void(0)" onClick="switch_sub_menu('67', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminVip&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">会员等级</a></li>
+                            <li><a id="menu_68" href="javascript:void(0)" onClick="switch_sub_menu('68', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminTeacherVip&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">讲师头衔</a></li>
                         </ul>
                     </li>
                     <li class="treemenu">
-                        <a id="root_33" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('33');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">财务配置</span></a>
-                        <ul id="tree_33" class="submenu">
+                        <a id="root_69" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('69');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">财务配置</span></a>
+                        <ul id="tree_69" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_34" href="javascript:void(0)" onClick="switch_sub_menu('34', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGlobalConfig&act=credit&');" class="submenuA" hidefocus="true" style="outline:none;">积分规则配置</a></li>
-                            <li><a id="menu_35" href="javascript:void(0)" onClick="switch_sub_menu('35', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=rechargeIntoConfig&');" class="submenuA" hidefocus="true" style="outline:none;">余额&积分配置</a></li>
-                            <li><a id="menu_36" href="javascript:void(0)" onClick="switch_sub_menu('36', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=vipPatternConfig&');" class="submenuA" hidefocus="true" style="outline:none;">会员模式管理</a></li>
-                            <li><a id="menu_37" href="javascript:void(0)" onClick="switch_sub_menu('37', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=distributionConfig&');" class="submenuA" hidefocus="true" style="outline:none;">分销比例配置</a></li>
+                            <li><a id="menu_70" href="javascript:void(0)" onClick="switch_sub_menu('70', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGlobalConfig&act=credit&');" class="submenuA" hidefocus="true" style="outline:none;">积分规则配置</a></li>
+                            <li><a id="menu_71" href="javascript:void(0)" onClick="switch_sub_menu('71', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=rechargeIntoConfig&');" class="submenuA" hidefocus="true" style="outline:none;">余额&积分配置</a></li>
+                            <li><a id="menu_72" href="javascript:void(0)" onClick="switch_sub_menu('72', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=vipPatternConfig&');" class="submenuA" hidefocus="true" style="outline:none;">会员模式管理</a></li>
+                            <li><a id="menu_73" href="javascript:void(0)" onClick="switch_sub_menu('73', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=distributionConfig&');" class="submenuA" hidefocus="true" style="outline:none;">分销比例配置</a></li>
                         </ul>
                     </li>
                     <li class="treemenu">
-                        <a id="root_38" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('38');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">营销配置</span></a>
-                        <ul id="tree_38" class="submenu">
+                        <a id="root_74" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('74');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">营销配置</span></a>
+                        <ul id="tree_74" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_39" href="javascript:void(0)" onClick="switch_sub_menu('39', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=marketConfig&');" class="submenuA" hidefocus="true" style="outline:none;">营销数据开关</a></li>
+                            <li><a id="menu_75" href="javascript:void(0)" onClick="switch_sub_menu('75', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=marketConfig&');" class="submenuA" hidefocus="true" style="outline:none;">营销数据开关</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="MenuList" id="root_user" style="display:none;">
+                    <!-- 第二级菜单 -->
+                    <li class="treemenu">
+                        <a id="root_76" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('76');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">用户</span></a>
+                        <ul id="tree_76" class="submenu">
+                            <!-- 第三级菜单 -->
+                            <li><a id="menu_77" href="javascript:void(0)" onClick="switch_sub_menu('77', 'http://try.51eduline.com/index.php?app=admin&mod=User&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">用户管理</a></li>
+                            <li><a id="menu_78" href="javascript:void(0)" onClick="switch_sub_menu('78', 'http://try.51eduline.com/index.php?app=admin&mod=UserGroup&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">用户组管理</a></li>
+                            <li><a id="menu_79" href="javascript:void(0)" onClick="switch_sub_menu('79', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminTeacher&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">讲师管理</a></li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="MenuList" id="root_course" style="display:none;">
                     <!-- 第二级菜单 -->
                     <li class="treemenu">
-                        <a id="root_40" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('40');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">点播课管理</span></a>
-                        <ul id="tree_40" class="submenu">
+                        <a id="root_80" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('80');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">点播课管理</span></a>
+                        <ul id="tree_80" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_41" href="javascript:void(0)" onClick="switch_sub_menu('41', 'http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">点播课管理</a></li>
+                            <li><a id="menu_81" href="javascript:void(0)" onClick="switch_sub_menu('81', 'http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">点播课管理</a></li>
                         </ul>
                     </li>
                     <li class="treemenu">
-                        <a id="root_42" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('42');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">直播课管理</span></a>
-                        <ul id="tree_42" class="submenu">
+                        <a id="root_82" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('82');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">直播课管理</span></a>
+                        <ul id="tree_82" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_43" href="javascript:void(0)" onClick="switch_sub_menu('43', 'http://try.51eduline.com/index.php?app=live&mod=AdminLive&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">直播课管理</a></li>
+                            <li><a id="menu_83" href="javascript:void(0)" onClick="switch_sub_menu('83', 'http://try.51eduline.com/index.php?app=live&mod=AdminLive&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">直播课管理</a></li>
                         </ul>
                     </li>
                     <li class="treemenu">
-                        <a id="root_44" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('44');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">班级管理</span></a>
-                        <ul id="tree_44" class="submenu">
+                        <a id="root_84" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('84');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">班级管理</span></a>
+                        <ul id="tree_84" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_45" href="javascript:void(0)" onClick="switch_sub_menu('45', 'http://try.51eduline.com/index.php?app=course&mod=AdminAlbum&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">班级课管理</a></li>
+                            <li><a id="menu_85" href="javascript:void(0)" onClick="switch_sub_menu('85', 'http://try.51eduline.com/index.php?app=course&mod=AdminAlbum&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">班级课管理</a></li>
                         </ul>
                     </li>
                     <li class="treemenu">
-                        <a id="root_46" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('46');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">线下课管理</span></a>
-                        <ul id="tree_46" class="submenu">
+                        <a id="root_86" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('86');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">线下课管理</span></a>
+                        <ul id="tree_86" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_47" href="javascript:void(0)" onClick="switch_sub_menu('47', 'http://try.51eduline.com/index.php?app=course&mod=AdminLineClass&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">线下课管理</a></li>
+                            <li><a id="menu_87" href="javascript:void(0)" onClick="switch_sub_menu('87', 'http://try.51eduline.com/index.php?app=course&mod=AdminLineClass&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">线下课管理</a></li>
                         </ul>
                     </li>
                     <li class="treemenu">
-                        <a id="root_48" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('48');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">考试管理</span></a>
-                        <ul id="tree_48" class="submenu">
+                        <a id="root_88" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('88');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">考试管理</span></a>
+                        <ul id="tree_88" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_49" href="javascript:void(0)" onClick="switch_sub_menu('49', 'http://try.51eduline.com/index.php?app=exams&mod=AdminCategory&act=subject&');" class="submenuA" hidefocus="true" style="outline:none;">分类管理</a></li>
-                            <li><a id="menu_50" href="javascript:void(0)" onClick="switch_sub_menu('50', 'http://try.51eduline.com/index.php?app=exams&mod=AdminPoint&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">考点管理</a></li>
-                            <li><a id="menu_51" href="javascript:void(0)" onClick="switch_sub_menu('51', 'http://try.51eduline.com/index.php?app=exams&mod=AdminQuestion&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">试题管理</a></li>
-                            <li><a id="menu_52" href="javascript:void(0)" onClick="switch_sub_menu('52', 'http://try.51eduline.com/index.php?app=exams&mod=AdminPaper&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">试卷管理</a></li>
-                            <li><a id="menu_53" href="javascript:void(0)" onClick="switch_sub_menu('53', 'http://try.51eduline.com/index.php?app=exams&mod=AdminExamsUser&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">成绩管理</a></li>
-                            <li><a id="menu_54" href="javascript:void(0)" onClick="switch_sub_menu('54', 'http://try.51eduline.com/index.php?app=exams&mod=AdminExamsCert&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">证书管理</a></li>
+                            <li><a id="menu_89" href="javascript:void(0)" onClick="switch_sub_menu('89', 'http://try.51eduline.com/index.php?app=exams&mod=AdminCategory&act=subject&');" class="submenuA" hidefocus="true" style="outline:none;">分类管理</a></li>
+                            <li><a id="menu_90" href="javascript:void(0)" onClick="switch_sub_menu('90', 'http://try.51eduline.com/index.php?app=exams&mod=AdminPoint&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">考点管理</a></li>
+                            <li><a id="menu_91" href="javascript:void(0)" onClick="switch_sub_menu('91', 'http://try.51eduline.com/index.php?app=exams&mod=AdminQuestion&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">试题管理</a></li>
+                            <li><a id="menu_92" href="javascript:void(0)" onClick="switch_sub_menu('92', 'http://try.51eduline.com/index.php?app=exams&mod=AdminPaper&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">试卷管理</a></li>
+                            <li><a id="menu_93" href="javascript:void(0)" onClick="switch_sub_menu('93', 'http://try.51eduline.com/index.php?app=exams&mod=AdminExamsUser&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">成绩管理</a></li>
+                            <li><a id="menu_94" href="javascript:void(0)" onClick="switch_sub_menu('94', 'http://try.51eduline.com/index.php?app=exams&mod=AdminExamsCert&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">证书管理</a></li>
                         </ul>
                     </li>
                     <li class="treemenu">
-                        <a id="root_55" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('55');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">内容管理</span></a>
-                        <ul id="tree_55" class="submenu">
+                        <a id="root_95" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('95');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">内容管理</span></a>
+                        <ul id="tree_95" class="submenu">
                             <!-- 第三级菜单 -->
-                            <li><a id="menu_56" href="javascript:void(0)" onClick="switch_sub_menu('56', 'http://try.51eduline.com/index.php?app=wenda&mod=AdminWenda&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">问答管理</a></li>
-                            <li><a id="menu_57" href="javascript:void(0)" onClick="switch_sub_menu('57', 'http://try.51eduline.com/index.php?app=course&mod=AdminNote&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">笔记管理</a></li>
-                            <li><a id="menu_58" href="javascript:void(0)" onClick="switch_sub_menu('58', 'http://try.51eduline.com/index.php?app=course&mod=AdminQuestion&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">提问管理</a></li>
-                            <li><a id="menu_59" href="javascript:void(0)" onClick="switch_sub_menu('59', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminReview&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">点评管理</a></li>
-                            <li><a id="menu_60" href="javascript:void(0)" onClick="switch_sub_menu('60', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminLibrary&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">文库管理</a></li>
-                            <li><a id="menu_61" href="javascript:void(0)" onClick="switch_sub_menu('61', 'http://try.51eduline.com/index.php?app=course&mod=AdminCourseCategory&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">分类配置</a></li>
+                            <li><a id="menu_96" href="javascript:void(0)" onClick="switch_sub_menu('96', 'http://try.51eduline.com/index.php?app=wenda&mod=AdminWenda&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">问答管理</a></li>
+                            <li><a id="menu_97" href="javascript:void(0)" onClick="switch_sub_menu('97', 'http://try.51eduline.com/index.php?app=course&mod=AdminNote&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">笔记管理</a></li>
+                            <li><a id="menu_98" href="javascript:void(0)" onClick="switch_sub_menu('98', 'http://try.51eduline.com/index.php?app=course&mod=AdminQuestion&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">提问管理</a></li>
+                            <li><a id="menu_99" href="javascript:void(0)" onClick="switch_sub_menu('99', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminReview&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">点评管理</a></li>
+                            <li><a id="menu_100" href="javascript:void(0)" onClick="switch_sub_menu('100', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminLibrary&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">文库管理</a></li>
+                            <li><a id="menu_101" href="javascript:void(0)" onClick="switch_sub_menu('101', 'http://try.51eduline.com/index.php?app=course&mod=AdminCourseCategory&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">分类配置</a></li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="MenuList" id="root_finance" style="display:none;">
                     <!-- 第二级菜单 -->
                     <li class="treemenu">
-                        <!--<a id="root_62" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('62');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">订单与账户</span></a>-->
-                        <ul id="tree_62" class="submenu">
-                            <!-- 第三级菜单 -->
-                            <li><a id="menu_63" href="javascript:void(0)" onClick="switch_sub_menu('63', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminOrder&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">订单管理</a></li>
-                            <li><a id="menu_64" href="javascript:void(0)" onClick="switch_sub_menu('64', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminApplirefund&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">申请退款管理</a></li>
-                            <li><a id="menu_65" href="javascript:void(0)" onClick="switch_sub_menu('65', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminWithdraw&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">提现申请</a></li>
-                            <li><a id="menu_66" href="javascript:void(0)" onClick="switch_sub_menu('66', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminCard&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">卡号列表</a></li>
-                            <li><a id="menu_67" href="javascript:void(0)" onClick="switch_sub_menu('67', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminRecharge&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">支付记录</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="treemenu">
-                        <a id="root_68" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('68');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">财务明细管理</span></a>
-                        <ul id="tree_68" class="submenu">
-                            <!-- 第三级菜单 -->
-                            <!--<li><a id="menu_69" href="javascript:void(0)" onClick="switch_sub_menu('69', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminLearnc&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">余额管理</a></li>
-                            <li><a id="menu_70" href="javascript:void(0)" onClick="switch_sub_menu('70', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminUserSplit&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">收入管理</a></li>
-                            <li><a id="menu_71" href="javascript:void(0)" onClick="switch_sub_menu('71', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminSplit&act=splitVideo&');" class="submenuA" hidefocus="true" style="outline:none;">分成明细</a></li>
-                            <li><a id="menu_72" href="javascript:void(0)" onClick="switch_sub_menu('72', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGlobal&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">积分管理</a></li>-->
-                            <li><a id="menu_63" href="javascript:void(0)" onClick="switch_sub_menu('69', '/job/toJob');" class="submenuA" hidefocus="true" style="outline:none;">职位管理</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <!--<ul class="MenuList" id="root_mall" style="display:none;">
-                    &lt;!&ndash; 第二级菜单 &ndash;&gt;
-                    <li class="treemenu">
-                        <a id="root_73" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('73');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">商城管理</span></a>
-                        <ul id="tree_73" class="submenu">
-                            &lt;!&ndash; 第三级菜单 &ndash;&gt;
-                            <li><a id="menu_74" href="javascript:void(0)" onClick="switch_sub_menu('74', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGoods&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">商品管理</a></li>
-                            <li><a id="menu_75" href="javascript:void(0)" onClick="switch_sub_menu('75', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGoodsOrder&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">订单管理</a></li>
-                            <li><a id="menu_76" href="javascript:void(0)" onClick="switch_sub_menu('76', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGoodsAddress&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">收货地址管理</a></li>
-                            <li><a id="menu_77" href="javascript:void(0)" onClick="switch_sub_menu('77', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGoodsCate&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">商品分类配置</a></li>
-                            <li><a id="menu_78" href="javascript:void(0)" onClick="switch_sub_menu('78', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=kuaidiConfig&');" class="submenuA" hidefocus="true" style="outline:none;">物流信息配置</a></li>
-                        </ul>
-                    </li>
-                </ul>-->
-                <ul class="MenuList" id="root_school" style="display:none;">
-                    <!-- 第二级菜单 -->
-                    <li class="treemenu">
-                        <a id="root_79" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('79');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">机构</span></a>
-                        <ul id="tree_79" class="submenu">
-                            <!-- 第三级菜单 -->
-                            <li><a id="menu_80" href="javascript:void(0)" onClick="switch_sub_menu('80', 'http://try.51eduline.com/index.php?app=school&mod=AdminSchool&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">机构管理</a></li>
-                            <li><a id="menu_81" href="javascript:void(0)" onClick="switch_sub_menu('81', 'http://try.51eduline.com/index.php?app=school&mod=AdminDomaiName&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">独立域名管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="treemenu">
-                        <a id="root_82" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('82');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">内容管理</span></a>
-                        <ul id="tree_82" class="submenu">
-                            <!-- 第三级菜单 -->
-                            <li><a id="menu_83" href="javascript:void(0)" onClick="switch_sub_menu('83', 'http://try.51eduline.com/index.php?app=news&mod=AdminTopic&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">资讯管理</a></li>
-                            <li><a id="menu_84" href="javascript:void(0)" onClick="switch_sub_menu('84', 'http://try.51eduline.com/index.php?app=course&mod=AdminVideo&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">点播课管理</a></li>
-                            <li><a id="menu_85" href="javascript:void(0)" onClick="switch_sub_menu('85', 'http://try.51eduline.com/index.php?app=live&mod=AdminLive&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">直播课管理</a></li>
-                            <li><a id="menu_86" href="javascript:void(0)" onClick="switch_sub_menu('86', 'http://try.51eduline.com/index.php?app=course&mod=AdminAlbum&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">班级课管理</a></li>
-                            <li><a id="menu_87" href="javascript:void(0)" onClick="switch_sub_menu('87', 'http://try.51eduline.com/index.php?app=course&mod=AdminLineClass&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">线下课管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="treemenu">
-                        <a id="root_88" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('88');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">用户</span></a>
-                        <ul id="tree_88" class="submenu">
-                            <!-- 第三级菜单 -->
-                            <li><a id="menu_89" href="javascript:void(0)" onClick="switch_sub_menu('89', 'http://try.51eduline.com/index.php?app=admin&mod=User&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">用户管理</a></li>
-                            <li><a id="menu_90" href="javascript:void(0)" onClick="switch_sub_menu('90', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminTeacher&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">讲师管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="treemenu">
-                        <a id="root_91" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('91');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">数据统计</span></a>
-                        <ul id="tree_91" class="submenu">
-                            <!-- 第三级菜单 -->
-                            <li><a id="menu_92" href="javascript:void(0)" onClick="switch_sub_menu('92', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=regCount&');" class="submenuA" hidefocus="true" style="outline:none;">用户注册量统计</a></li>
-                            <li><a id="menu_93" href="javascript:void(0)" onClick="switch_sub_menu('93', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=activeCount&');" class="submenuA" hidefocus="true" style="outline:none;">活跃度统计</a></li>
-                            <li><a id="menu_94" href="javascript:void(0)" onClick="switch_sub_menu('94', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=courseSales&');" class="submenuA" hidefocus="true" style="outline:none;">课程销量统计</a></li>
-                            <li><a id="menu_95" href="javascript:void(0)" onClick="switch_sub_menu('95', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=orderCount&');" class="submenuA" hidefocus="true" style="outline:none;">销量变化</a></li>
-                            <li><a id="menu_96" href="javascript:void(0)" onClick="switch_sub_menu('96', 'http://try.51eduline.com/index.php?app=admin&mod=Home&act=profit&');" class="submenuA" hidefocus="true" style="outline:none;">收益统计</a></li>
-                            <li><a id="menu_97" href="javascript:void(0)" onClick="switch_sub_menu('97', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminLearnRecord&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">学习记录统计</a></li>
-                        </ul>
-                    </li>
-                    <li class="treemenu">
-                        <a id="root_98" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('98');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">营销卡管理</span></a>
-                        <ul id="tree_98" class="submenu">
-                            <!-- 第三级菜单 -->
-                            <li><a id="menu_99" href="javascript:void(0)" onClick="switch_sub_menu('99', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminUserCard&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">卡券发放</a></li>
-                            <li><a id="menu_100" href="javascript:void(0)" onClick="switch_sub_menu('100', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminOnlineCard&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">线上卡券管理</a></li>
-                            <li><a id="menu_101" href="javascript:void(0)" onClick="switch_sub_menu('101', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminEntityCard&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">实体卡管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="treemenu">
                         <a id="root_102" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('102');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">订单与账户</span></a>
                         <ul id="tree_102" class="submenu">
                             <!-- 第三级菜单 -->
                             <li><a id="menu_103" href="javascript:void(0)" onClick="switch_sub_menu('103', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminOrder&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">订单管理</a></li>
-                            <li><a id="menu_104" href="javascript:void(0)" onClick="switch_sub_menu('104', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminSplit&act=splitVideo&');" class="submenuA" hidefocus="true" style="outline:none;">用户分成管理</a></li>
+                            <li><a id="menu_104" href="javascript:void(0)" onClick="switch_sub_menu('104', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminApplirefund&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">申请退款管理</a></li>
+                            <li><a id="menu_105" href="javascript:void(0)" onClick="switch_sub_menu('105', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminWithdraw&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">提现申请</a></li>
+                            <li><a id="menu_106" href="javascript:void(0)" onClick="switch_sub_menu('106', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminCard&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">卡号列表</a></li>
+                            <li><a id="menu_107" href="javascript:void(0)" onClick="switch_sub_menu('107', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminRecharge&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">支付记录</a></li>
+                        </ul>
+                    </li>
+                    <li class="treemenu">
+                        <a id="root_108" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('108');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">财务明细管理</span></a>
+                        <ul id="tree_108" class="submenu">
+                            <!-- 第三级菜单 -->
+                            <li><a id="menu_109" href="javascript:void(0)" onClick="switch_sub_menu('109', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminLearnc&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">余额管理</a></li>
+                            <li><a id="menu_110" href="javascript:void(0)" onClick="switch_sub_menu('110', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminUserSplit&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">收入管理</a></li>
+                            <li><a id="menu_111" href="javascript:void(0)" onClick="switch_sub_menu('111', 'http://try.51eduline.com/index.php?app=classroom&mod=AdminSplit&act=splitVideo&');" class="submenuA" hidefocus="true" style="outline:none;">分成明细</a></li>
+                            <li><a id="menu_112" href="javascript:void(0)" onClick="switch_sub_menu('112', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGlobal&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">积分管理</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="MenuList" id="root_mall" style="display:none;">
+                    <!-- 第二级菜单 -->
+                    <li class="treemenu">
+                        <a id="root_113" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('113');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">商城管理</span></a>
+                        <ul id="tree_113" class="submenu">
+                            <!-- 第三级菜单 -->
+                            <li><a id="menu_114" href="javascript:void(0)" onClick="switch_sub_menu('114', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGoods&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">商品管理</a></li>
+                            <li><a id="menu_115" href="javascript:void(0)" onClick="switch_sub_menu('115', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGoodsOrder&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">订单管理</a></li>
+                            <li><a id="menu_116" href="javascript:void(0)" onClick="switch_sub_menu('116', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGoodsAddress&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">收货地址管理</a></li>
+                            <li><a id="menu_117" href="javascript:void(0)" onClick="switch_sub_menu('117', 'http://try.51eduline.com/index.php?app=mall&mod=AdminGoodsCate&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">商品分类配置</a></li>
+                            <li><a id="menu_118" href="javascript:void(0)" onClick="switch_sub_menu('118', 'http://try.51eduline.com/index.php?app=admin&mod=Config&act=kuaidiConfig&');" class="submenuA" hidefocus="true" style="outline:none;">物流信息配置</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="MenuList" id="root_school" style="display:none;">
+                    <!-- 第二级菜单 -->
+                    <li class="treemenu">
+                        <a id="root_119" class="actuator" href="javascript:void(0)" onClick="switch_root_menu('119');" hidefocus="true" style="outline:none;"><i class="icon icon-sanjiaoxing-right"></i><span class="text">机构</span></a>
+                        <ul id="tree_119" class="submenu">
+                            <!-- 第三级菜单 -->
+                            <li><a id="menu_120" href="javascript:void(0)" onClick="switch_sub_menu('120', 'http://try.51eduline.com/index.php?app=school&mod=AdminSchool&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">机构管理</a></li>
+                            <li><a id="menu_121" href="javascript:void(0)" onClick="switch_sub_menu('121', 'http://try.51eduline.com/index.php?app=school&mod=AdminDomaiName&act=index&');" class="submenuA" hidefocus="true" style="outline:none;">独立域名管理</a></li>
                         </ul>
                     </li>
                 </ul>
