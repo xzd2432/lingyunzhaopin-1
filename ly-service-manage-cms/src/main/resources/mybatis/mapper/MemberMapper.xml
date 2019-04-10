@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lingyun.manager_cms.dao.MemberMapper" >
+  <resultMap id="BaseResultMap" type="com.lingyun.framework.domain.shop.Member" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="attribute_value0" property="attributeValue0" jdbcType="VARCHAR" />
+    <result column="attribute_value1" property="attributeValue1" jdbcType="VARCHAR" />
+    <result column="attribute_value2" property="attributeValue2" jdbcType="VARCHAR" />
+    <result column="attribute_value3" property="attributeValue3" jdbcType="VARCHAR" />
+    <result column="attribute_value4" property="attributeValue4" jdbcType="VARCHAR" />
+    <result column="attribute_value5" property="attributeValue5" jdbcType="VARCHAR" />
+    <result column="attribute_value6" property="attributeValue6" jdbcType="VARCHAR" />
+    <result column="attribute_value7" property="attributeValue7" jdbcType="VARCHAR" />
+    <result column="attribute_value8" property="attributeValue8" jdbcType="VARCHAR" />
+    <result column="attribute_value9" property="attributeValue9" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="birth" property="birth" jdbcType="TIMESTAMP" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="is_locked" property="isLocked" jdbcType="BIT" />
+    <result column="locked_date" property="lockedDate" jdbcType="TIMESTAMP" />
+    <result column="login_date" property="loginDate" jdbcType="TIMESTAMP" />
+    <result column="login_failure_count" property="loginFailureCount" jdbcType="INTEGER" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="point" property="point" jdbcType="BIGINT" />
+    <result column="register_ip" property="registerIp" jdbcType="VARCHAR" />
+    <result column="safe_key_expire" property="safeKeyExpire" jdbcType="TIMESTAMP" />
+    <result column="safe_key_value" property="safeKeyValue" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="BIGINT" />
+    <result column="member_rank" property="memberRank" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_date, modify_date, address, amount, attribute_value0, attribute_value1, 
+    attribute_value2, attribute_value3, attribute_value4, attribute_value5, attribute_value6, 
+    attribute_value7, attribute_value8, attribute_value9, balance, birth, email, gender, 
+    is_enabled, is_locked, locked_date, login_date, login_failure_count, login_ip, mobile, 
+    name, password, phone, point, register_ip, safe_key_expire, safe_key_value, username, 
+    zip_code, area, member_rank
+  </sql>
+
+  <select id="findList" parameterType="com.lingyun.framework.domain.shop.Member" resultMap="BaseResultMap">
+    select * from xx_member
+  </select>
+</mapper>

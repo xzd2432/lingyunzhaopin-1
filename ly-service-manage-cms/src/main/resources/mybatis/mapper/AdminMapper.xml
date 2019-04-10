@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lingyun.manager_cms.dao.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.lingyun.framework.domain.shop.Admin" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="is_locked" property="isLocked" jdbcType="BIT" />
+    <result column="locked_date" property="lockedDate" jdbcType="TIMESTAMP" />
+    <result column="login_date" property="loginDate" jdbcType="TIMESTAMP" />
+    <result column="login_failure_count" property="loginFailureCount" jdbcType="INTEGER" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_date, modify_date, department, email, is_enabled, is_locked, locked_date, 
+    login_date, login_failure_count, login_ip, name, password, username
+  </sql>
+
+  <select id="findList" resultMap="BaseResultMap">
+    select * from xx_admin
+  </select>
+</mapper>
