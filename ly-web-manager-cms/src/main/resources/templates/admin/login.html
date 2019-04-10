@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Eduline登录—后台登录</title>
+    <style type="text/css">
+        body,html{height: 100%;width: 100%;position: relative;}
+        body {background-size: cover;font-family:arial;font-size: 12px;margin: 0px;color:#999999;overflow: hidden;}
+        li{list-style-type: none;}
+        *{margin: 0;padding: 0;}
+        ul, form, input{font-size:12px; padding:0; margin:0;}
+        a:link{color:#999;text-decoration:none}
+        a:visited{color:#999;text-decoration:none}
+        a:hover{color: #ffffff;text-decoration:underline}
+        a img{border: none;}
+        #login_verify{border: 0;}
+        img{border: 0px;}
+        .content>img{width:100%;min-height:760px;height:100%;}
+        .login-wrap{ width:400px; height:420px; float: right;}
+        .login-inner .login{position:absolute;right:0px;top:0px;width:100%;height: 100%;color:#333333;border-radius: 5px;background: #fff;}
+        .s-txt{border: 0;outline: 0;padding:0 0 0 10px; background:none; height:28px;line-height: inherit ;*line-height:28px;  vertical-align:middle; border-bottom:1px solid #e5e5e5; margin-right:10px;}
+        .s-txt-focus{padding:0 0 0 10px; background:none; height:28px;line-height: inherit ;*line-height:28px;  vertical-align:middle; border:1px solid #cce4f4; margin-right:10px; outline:none}
+        .login-wrap .hd{width:100%; text-align:center;font-size:28px;color:#1b66b1;margin: 33px 0;}
+        .login-wrap .login-inner{width:400px;height:420px;position:relative;}
+        .login-inner .login .title{color:#535353;font-size:14px;font-weight:700;padding:0 0 10px;background:url(http://try.51eduline.com/apps/admin/_static/images/line-bt-double.gif) repeat-x left bottom}
+        .login-wrap .fd{text-align:center;height:16px;line-height:16px;padding:10px 0;color: #fff;}
+        .login-wrap .login .form-tt{display:block;float:left;height:16px;line-height:16px;padding:6px 0 0;width:53px;text-align:left; color:#999999}
+        .login-wrap .login .form-name{height:38px;line-height:28px;padding:6px 0 0;border-bottom: 1px solid #e5e5e5;}
+        .form-login input{vertical-align:middle;font-size: 16px;height: 50px;}
+        .form-login ul{;margin:0 auto; width:100%;}
+        .form-login ul li{padding:0 0 15px;overflow:hidden;zoom:1;margin: 0 50px;}
+        .form-login label{padding:0 0 5px}
+        .form-login .s-txt, .form-login .s-txt-focus{width:100%;}
+        .form-login a{text-decoration:none; color:#ffffff; text-align:center; height:50px;font-size: 16px;}
+        /*蓝色按钮*/
+        .btn-green-big{display:block;line-height:50px;text-align:center; background:#3695ff; margin:38px 0 0; width:100%; height:50px; color:#ffffff; text-align:center;letter-spacing:2em;color: #fff;border-radius: 4px;}
+        .btn-green-big a{}
+        .btn-green-big:hover{background-position:0 -40px;}
+        canvas{z-index:-1;position:absolute;}
+        .resetcode{cursor: pointer;}
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px white inset !important;
+        }
+        .eduline{width: 43%;float: left;margin-left: 70px;}
+        .big_box{width: 1200px;margin: 0 auto;position: fixed;top: 0;left: 0;right: 0px;bottom: 0;margin: auto;display: inline-block;height: 440px;}
+        .content{width: 100%;height: 100%;position: absolute;left: 0;top: 0px;}
+    </style>
+</head>
+<body>
+<div class="content">
+    <img src="../apps/admin/_static/images/admin_bg.png" alt="">
+    <div class="big_box">
+        <!--外包-->
+        <div class="login-wrap">
+            <div class="login">
+                <div class="login-inner">
+                    <div class="login">
+                        <form action="http://try.51eduline.com/index.php?app=admin&mod=Public&act=doLogin" name="reg" method="post" class="form-login" >
+                            <div class="hd">后台管理中心</div>
+                            <ul>
+                                <li><div class="form-name">辉董</div>
+                                    <div class="form-row"><input id="login_name" placeholder="" type="hidden" name='uid' value='881'></div>
+                                </li>
+
+                                <li>
+                                    <!-- <div class="form-tt">密码：</div> -->
+                                    <div class="form-row"><input id="login_pwd" type="text" placeholder="密码" class="s-txt"  name="password" value="" autocomplete="off" ></div>
+                                </li>
+                                <li>
+                                    <!-- <div class="form-tt">验证码：</div> -->
+                                    <div class="form-row" style="border-bottom:1px solid #e5e5e5">
+                                        <input id="login_verify" class="s-txt" placeholder="图形验证码"  name="verify" value="" style="width:158px" >
+                                        <span id="verifyimg_loading">验证码加载中...</span>
+                                        <img src="/" id="verifyimg" alt="看不清？换一张" title="看不清？换一张"  style="display:none;vertical-align:middle;width:118px;height:40px;" class="resetcode"/>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-row"><a href="#" onclick="document.reg.submit();" class="btn-green-big" >&nbsp;登录</a>
+                                        <input type="submit" style='display:none'></div>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="eduline" src="../apps/admin/_static/images/eduline.png" alt="">
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../addons/theme/stv1/_static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+    // 绑定回车事件
+    $(function() {
+        $(this).bind('keydown', function(e) {
+            var key = e.which;
+            if(key == 13) {
+                var name = $.trim($('#login_name').val());
+                var pwd = $.trim($('#login_pwd').val());
+                var verify = $.trim($('#login_verify').val());
+                if(name != '' && pwd != '' && verify != '') {
+                    document.reg.submit();
+                }
+            }
+        });
+        var codeSrc = "http://try.51eduline.com/index.php?app=basic&mod=Captcha&act=index&id=&config[imageW]=85&config[imageH]=28&!"+Math.random();
+
+        $(".resetcode").attr('src',codeSrc).load(function(){
+            $("#verifyimg_loading").remove();
+            $(this).show();
+        });
+        /** 刷新验证码 */
+        $('.resetcode').click(function(){
+            $(".resetcode").attr('src',function(){
+                var index = this.src.indexOf('&!');
+                if(index !== -1){
+                    return this.src.substr(0,index)+'&!'+Math.random();
+                }
+                return this.src+'&!'+Math.random();
+            });
+        });
+        // 每60s 刷新一次验证码
+        setInterval(function(){
+            $(".resetcode").click();
+        },120*1000);
+
+        $("#login_pwd").focus(function(){
+            var html='<input id="login_pwd" type="password" placeholder="密码" class="s-txt"  name="password" value="" autocomplete="off" >';
+            $(this).parent().html(html);
+            $("#login_pwd").focus();
+        });
+
+    });
+</script>
