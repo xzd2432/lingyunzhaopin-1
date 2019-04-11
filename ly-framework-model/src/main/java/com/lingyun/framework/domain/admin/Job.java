@@ -23,8 +23,6 @@ public class Job implements Serializable {
 
     private String jobCategory;
 
-    private String jobSkill;
-
     private String brightSpot;
 
     private Integer jobNumber;
@@ -93,14 +91,6 @@ public class Job implements Serializable {
 
     public void setJobCategory(String jobCategory) {
         this.jobCategory = jobCategory == null ? null : jobCategory.trim();
-    }
-
-    public String getjobSkill() {
-        return jobSkill;
-    }
-
-    public void setjobSkill(String jobSkill) {
-        this.jobSkill = jobSkill == null ? null : jobSkill.trim();
     }
 
     public String getBrightSpot() {
