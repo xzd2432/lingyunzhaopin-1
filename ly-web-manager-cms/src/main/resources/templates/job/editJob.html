@@ -37,6 +37,7 @@
 </form>
 <script>
     function editJob() {
+        alert($("#editJobForm").serialize())
         $.ajax({
             url:'/job/editJob',
             type:'post',
