@@ -30,7 +30,7 @@ public class Job implements Serializable {
     private String department;
 
     private Date createdatetime;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd-HH-mm-ss-sss")
     private Date uptodate;
 
     private Integer companyId;
