@@ -5,6 +5,7 @@ import com.lingyun.manager_cms.dao.JobMapper;
 import com.lingyun.manager_cms.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
