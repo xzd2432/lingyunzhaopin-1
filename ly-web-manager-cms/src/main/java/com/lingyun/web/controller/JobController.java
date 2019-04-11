@@ -18,9 +18,7 @@ public class JobController {
 	private JobService jobService;
 
 	@RequestMapping("/toJob")
-	public String toJob(Model model){
-		List<Job> list = jobService.queryJob();
-		model.addAttribute("list",list);
+	public String toJob(){
 		return "job/index";
 	}
 	@RequestMapping("/deleteJob")
@@ -38,5 +36,10 @@ public class JobController {
 	@ResponseBody
 	public void editJob(Job job){
 		jobService.editJob(job);
+	}
+	@RequestMapping("/queryJob")
+	@ResponseBody
+	public List<Job> queryJob(){
+		return jobService.queryJob();
 	}
 }
