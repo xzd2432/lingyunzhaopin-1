@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lingyun.manager_cms.dao.InfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lingyun.framework.domain.admin.Info" >
+    <id column="infoid" property="infoid" jdbcType="INTEGER" />
+    <result column="infoname" property="infoname" jdbcType="VARCHAR" />
+    <result column="infotheme" property="infotheme" jdbcType="VARCHAR" />
+    <result column="infotdate" property="infotdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    infoid, infoname, infotheme, infotdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_info
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </select>
+
+
+  <select id="query" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_info
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_info
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </delete>
+
+ <delete id="delete" parameterType="java.lang.String" >
+    delete from t_info
+    where infoid in (${ids})
+ </delete>
+
+  <insert id="insert" parameterType="com.lingyun.framework.domain.admin.Info" >
+    insert into t_info (infoid, infoname, infotheme, 
+      infotdate)
+    values (#{infoid,jdbcType=INTEGER}, #{infoname,jdbcType=VARCHAR}, #{infotheme,jdbcType=VARCHAR}, 
+      #{infotdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lingyun.framework.domain.admin.Info" >
+    insert into t_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="infoid != null" >
+        infoid,
+      </if>
+      <if test="infoname != null" >
+        infoname,
+      </if>
+      <if test="infotheme != null" >
+        infotheme,
+      </if>
+      <if test="infotdate != null" >
+        infotdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="infoid != null" >
+        #{infoid,jdbcType=INTEGER},
+      </if>
+      <if test="infoname != null" >
+        #{infoname,jdbcType=VARCHAR},
+      </if>
+      <if test="infotheme != null" >
+        #{infotheme,jdbcType=VARCHAR},
+      </if>
+      <if test="infotdate != null" >
+        #{infotdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lingyun.framework.domain.admin.Info" >
+    update t_info
+    <set >
+      <if test="infoname != null" >
+        infoname = #{infoname,jdbcType=VARCHAR},
+      </if>
+      <if test="infotheme != null" >
+        infotheme = #{infotheme,jdbcType=VARCHAR},
+      </if>
+      <if test="infotdate != null" >
+        infotdate = #{infotdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lingyun.framework.domain.admin.Info" >
+    update t_info
+    set infoname = #{infoname,jdbcType=VARCHAR},
+      infotheme = #{infotheme,jdbcType=VARCHAR},
+      infotdate = #{infotdate,jdbcType=TIMESTAMP}
+    where infoid = #{infoid,jdbcType=INTEGER}
+  </update>
+</mapper>

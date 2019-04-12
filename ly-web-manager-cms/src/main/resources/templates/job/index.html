@@ -1,54 +1,572 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<script type="text/javascript" th:src="@{/addons/theme/stv1/_static/js/jquery-1.8.3.min.js}" src="../static/addons/theme/stv1/_static/js/jquery-1.8.3.min.js" ></script>
-<style>
-    td{
-        vertical-align: middle;
-        text-align: center;
-    }
+<style media="screen">
+    body{background: #fff;}
+
 </style>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link th:href="@{/apps/admin/_static/css/admin.css}" rel="stylesheet" type="text/css">
+    <script>
+        /**
+         * 全局变量
+         */
+        var SITE_URL  = 'http://try.51eduline.com';
+        var THEME_URL = 'http://try.51eduline.com/addons/theme/stv1/_static';
+        var APPNAME   = 'admin';
+        var UPLOAD_URL ='http://try.51eduline.com/data/upload';
+        var MID		  = '941';
+        var UID		  = '941';
+        var initNums  =  '140';
+        // Js语言变量
+        var LANG = new Array();
+        var info = {icon:0,time:1800,btn:false,title:'',closeBtn:0};
+        var success = {icon:1,time:1800,btn:false,title:'',closeBtn:0};
+        var error = {icon:2,time:1800,btn:false,title:'',closeBtn:0};
+    </script>
+    <script type="text/javascript" th:src="@{/addons/theme/stv1/_static/js/jquery-1.8.3.min.js}" src="../static/addons/theme/stv1/_static/js/jquery-1.8.3.min.js" ></script>
+    <script type="text/javascript" th:src="@{/addons/theme/stv1/_static/js/core.js}"></script>
+    <script type="text/javascript" th:src="@{/apps/admin/_static/js/module.js}"></script>
+    <script th:src="@{/addons/theme/stv1/_static/js/common.js}"></script>
+    <script th:src="@{/addons/theme/stv1/_static/js/module.common.js}"></script>
+    <script type="text/javascript" th:src="@{/apps/admin/_static/js/admin.js}"></script>
+    <script type="text/javascript" th:src="@{/addons/theme/stv1/_static/js/ui.layer.js}"></script>
+    <script type="text/javascript" th:src="@{/js/vue.min.js}"></script>
+    <!--非admin应用的后台js脚本统一写在  模板风格对应的app目录下的admin.js中-->
+</head>
 <body>
-<table>
-    <tr>
-        <td>职位名称</td>
-        <td>发布时间</td>
-        <td>工作地点</td>
-        <td>招聘人数</td>
-        <td>截至时间</td>
-        <td>发布公司</td>
-        <td>操作</td>
-    </tr>
-    <tr th:each="i : ${list}">
-        <td th:text="${i.jobname}">职位名称</td>
-        <td th:text="${#dates.format(i.createdatetime,'yyyy-MM-dd')}" >发布时间</td>
-        <td th:text="${i.address}">工作地点</td>
-        <td th:text="${i.jobNumber}+'人'"></td>
-        <td th:text="${#dates.format(i.uptodate,'yyyy-MM-dd')}">截至时间</td>
-        <td >华为</td>
-        <td>
-            <input type="button" value="删除" th:onclick="'deletejob('+${i.id}+')'">
-            <input type="button" value="修改" th:onclick="'toEditjob('+${i.id}+')'">
-        </td>
-    </tr>
-</table>
+<div id="container" class="so_main">
+    <!-- START TAB框 -->
+    <div class="tit_tab">
+        <ul>
+            <li><a href="http://try.51eduline.com/index.php?app=admin&mod=User&act=index&tabHash=index" class="on">列表</a></li><li><a href="http://try.51eduline.com/index.php?app=admin&mod=User&act=dellist&tabHash=dellist" >禁用</a></li><li><a href="http://try.51eduline.com/index.php?app=admin&mod=User&act=addUser&tabHash=addUser" >添加</a></li><li><a href="http://try.51eduline.com/index.php?app=admin&mod=User&act=importUser&tabHash=importUser" >导入</a></li><li><a href="http://try.51eduline.com/index.php?app=admin&mod=User&act=export&tabHash=export" >导出</a></li>
+            <li style="float:right">
+                <a onclick="admin.fold('page_config')">[页面配置]</a>
+            </li>
+            <li style="float:right"><a onclick="admin.fold('search_config')">[搜索配置]</a></li>
+            <!-- 列表 -->
+        </ul>
+    </div>
+    <!-- END TAB框 -->
+
+    <!-- START 页面配置 -->
+    <!--<div id='page_config' class = "form2 list" >
+        <div class="hd">提示：checkbox如果默认有多个值，请以“,”隔开。</div>
+        <form action="http://try.51eduline.com/index.php?app=admin&mod=Index&act=savePageConfig" method="POST">
+            <input type="hidden" name='pageKey' value="admin_User_index"  class="s-txt"/>
+            <input type="hidden" name='pageTitle' value="列表" />
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <th>字段</th>
+                    <th class="line_l">名称</th>
+                    <th class="line_l">是否隐藏</th>
+                    <th class="line_l">点击事件</th>
+                </tr>
+                <tr overstyle="on">
+                    <td width="20%"> <input type="hidden" name='key[]' value='uid'> uid</td>
+                    <td width="30%"><input type="text" name='key_name[]' value='编号'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                    <td width="20%">
+                        <select name="key_hidden[]">
+                            <option value="0" selected="selected">显示</option>
+                            <option value="1" >隐藏</option>
+                        </select>
+                    </td>
+                    <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                    &lt;!&ndash; <td style="background-color:#1E325C">
+                    <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                    <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                    </td> &ndash;&gt;
+                </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='uname'> uname</td>
+                <td width="30%"><input type="text" name='key_name[]' value='用户名'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" selected="selected">显示</option>
+                        <option value="1" >隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='phone'> phone</td>
+                <td width="30%"><input type="text" name='key_name[]' value='手机号'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" selected="selected">显示</option>
+                        <option value="1" >隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='user_group'> user_group</td>
+                <td width="30%"><input type="text" name='key_name[]' value='用户组'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" selected="selected">显示</option>
+                        <option value="1" >隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='location'> location</td>
+                <td width="30%"><input type="text" name='key_name[]' value='地区'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" >显示</option>
+                        <option value="1" selected="selected">隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='mhm_id'> mhm_id</td>
+                <td width="30%"><input type="text" name='key_name[]' value='所属机构'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" selected="selected">显示</option>
+                        <option value="1" >隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='is_audit'> is_audit</td>
+                <td width="30%"><input type="text" name='key_name[]' value='是否审核'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" >显示</option>
+                        <option value="1" selected="selected">隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='is_active'> is_active</td>
+                <td width="30%"><input type="text" name='key_name[]' value='是否激活'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" >显示</option>
+                        <option value="1" selected="selected">隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='is_init'> is_init</td>
+                <td width="30%"><input type="text" name='key_name[]' value='是否初始化'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" >显示</option>
+                        <option value="1" selected="selected">隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='browser_and_ver'> browser_and_ver</td>
+                <td width="30%"><input type="text" name='key_name[]' value='浏览器及版本'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" >显示</option>
+                        <option value="1" selected="selected">隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='os'> os</td>
+                <td width="30%"><input type="text" name='key_name[]' value='操作系统'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" >显示</option>
+                        <option value="1" selected="selected">隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='place'> place</td>
+                <td width="30%"><input type="text" name='key_name[]' value='地址'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" >显示</option>
+                        <option value="1" selected="selected">隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='ctime'> ctime</td>
+                <td width="30%"><input type="text" name='key_name[]' value='注册时间'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" selected="selected">显示</option>
+                        <option value="1" >隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='reg_ip'> reg_ip</td>
+                <td width="30%"><input type="text" name='key_name[]' value='注册IP'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" >显示</option>
+                        <option value="1" selected="selected">隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>					<tr overstyle="on">
+                <td width="20%"> <input type="hidden" name='key[]' value='DOACTION'> DOACTION</td>
+                <td width="30%"><input type="text" name='key_name[]' value='操作'  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%">
+                    <select name="key_hidden[]">
+                        <option value="0" selected="selected">显示</option>
+                        <option value="1" >隐藏</option>
+                    </select>
+                </td>
+                <td width="30%"><input type='text' name='key_javascript[]' value=''  class="s-txt" style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                &lt;!&ndash; <td style="background-color:#1E325C">
+                <a onclick="admin.moveUp($(this))" class="ico_top" title="上移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a> &nbsp;&nbsp;
+                <a onclick="admin.moveDown($(this))" class="ico_btm" title="下移"><img src="http://try.51eduline.com/addons/theme/stv1/_static/admin/image/zw_img.gif"></a>
+                </td> &ndash;&gt;
+            </tr>			</table>
+            <div class="page_btm">
+                <input type="submit" class="btn_b" value="确定" />
+            </div>
+        </form>
+    </div>-->
+    <!-- END 页面配置 -->
+
+    <!-- START 搜索配置 -->
+    <!--<div id='search_config' class = "form2 list" >
+        <div class="hd">提示:checkbox如果默认有多个值,请以","隔开。</div>
+        <form action="http://try.51eduline.com/index.php?app=admin&mod=Index&act=saveSearchConfig" method="POST">
+            <input type="hidden" name='searchPageKey' value="S_admin_User_index" />
+            <input type="hidden" name='pageTitle' value="列表" />
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <th>字段</th>
+                    <th class="line_l">名称</th>
+                    <th class="line_l">输入类型</th>
+                    <th class="line_l">提示信息</th>
+                    <th class="line_l">验证事件</th>
+                </tr>
+                <tr overstyle="on" >
+                    <td width="15%"><input type="hidden" name='key[]' value='id'> id</td>
+                    <td width="20%"><input type="text" name='key_name[]' value='用户UID' class="s-txt"   style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                    <td width="20%"><select name='key_type[]'>
+                        <option value='text' selected="selected">文本框:input_text</option>
+                        <option value='select' >下拉框:select</option>
+                        <option value='radio' >单选框:radio</option>
+                        <option value='checkbox' >多选框:checkbox</option>
+                        <option value='date' >日期插件:date</option>
+                        <option value='hidden' >隐藏值:input_hidden</option>
+                        <option value='user' >用户选择:selectUser</option>
+                        <option value='define' >自定义</option>
+                    </select></td>
+                    <td width="20%"><input type='text' name='key_tishi[]' value='' class="s-txt"  style="width:200px"  onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                    <td width="20%"><input type='text' name='key_javascript[]' value='' class="s-txt"  style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                </tr>					<tr overstyle="on" >
+                <td width="15%"><input type="hidden" name='key[]' value='uid'> uid</td>
+                <td width="20%"><input type="text" name='key_name[]' value='用户名' class="s-txt"   style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%"><select name='key_type[]'>
+                    <option value='text' >文本框:input_text</option>
+                    <option value='select' >下拉框:select</option>
+                    <option value='radio' >单选框:radio</option>
+                    <option value='checkbox' >多选框:checkbox</option>
+                    <option value='date' >日期插件:date</option>
+                    <option value='hidden' >隐藏值:input_hidden</option>
+                    <option value='user' selected="selected">用户选择:selectUser</option>
+                    <option value='define' >自定义</option>
+                </select></td>
+                <td width="20%"><input type='text' name='key_tishi[]' value='' class="s-txt"  style="width:200px"  onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                <td width="20%"><input type='text' name='key_javascript[]' value='' class="s-txt"  style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+            </tr>					<tr overstyle="on" >
+                <td width="15%"><input type="hidden" name='key[]' value='email'> email</td>
+                <td width="20%"><input type="text" name='key_name[]' value='邮箱' class="s-txt"   style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%"><select name='key_type[]'>
+                    <option value='text' selected="selected">文本框:input_text</option>
+                    <option value='select' >下拉框:select</option>
+                    <option value='radio' >单选框:radio</option>
+                    <option value='checkbox' >多选框:checkbox</option>
+                    <option value='date' >日期插件:date</option>
+                    <option value='hidden' >隐藏值:input_hidden</option>
+                    <option value='user' >用户选择:selectUser</option>
+                    <option value='define' >自定义</option>
+                </select></td>
+                <td width="20%"><input type='text' name='key_tishi[]' value='' class="s-txt"  style="width:200px"  onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                <td width="20%"><input type='text' name='key_javascript[]' value='' class="s-txt"  style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+            </tr>					<tr overstyle="on" >
+                <td width="15%"><input type="hidden" name='key[]' value='phone'> phone</td>
+                <td width="20%"><input type="text" name='key_name[]' value='手机号' class="s-txt"   style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%"><select name='key_type[]'>
+                    <option value='text' selected="selected">文本框:input_text</option>
+                    <option value='select' >下拉框:select</option>
+                    <option value='radio' >单选框:radio</option>
+                    <option value='checkbox' >多选框:checkbox</option>
+                    <option value='date' >日期插件:date</option>
+                    <option value='hidden' >隐藏值:input_hidden</option>
+                    <option value='user' >用户选择:selectUser</option>
+                    <option value='define' >自定义</option>
+                </select></td>
+                <td width="20%"><input type='text' name='key_tishi[]' value='' class="s-txt"  style="width:200px"  onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                <td width="20%"><input type='text' name='key_javascript[]' value='' class="s-txt"  style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+            </tr>					<tr overstyle="on" >
+                <td width="15%"><input type="hidden" name='key[]' value='sex'> sex</td>
+                <td width="20%"><input type="text" name='key_name[]' value='性别' class="s-txt"   style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%"><select name='key_type[]'>
+                    <option value='text' >文本框:input_text</option>
+                    <option value='select' >下拉框:select</option>
+                    <option value='radio' selected="selected">单选框:radio</option>
+                    <option value='checkbox' >多选框:checkbox</option>
+                    <option value='date' >日期插件:date</option>
+                    <option value='hidden' >隐藏值:input_hidden</option>
+                    <option value='user' >用户选择:selectUser</option>
+                    <option value='define' >自定义</option>
+                </select></td>
+                <td width="20%"><input type='text' name='key_tishi[]' value='' class="s-txt"  style="width:200px"  onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                <td width="20%"><input type='text' name='key_javascript[]' value='' class="s-txt"  style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+            </tr>					<tr overstyle="on" >
+                <td width="15%"><input type="hidden" name='key[]' value='user_group'> user_group</td>
+                <td width="20%"><input type="text" name='key_name[]' value='用户组' class="s-txt"   style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%"><select name='key_type[]'>
+                    <option value='text' >文本框:input_text</option>
+                    <option value='select' selected="selected">下拉框:select</option>
+                    <option value='radio' >单选框:radio</option>
+                    <option value='checkbox' >多选框:checkbox</option>
+                    <option value='date' >日期插件:date</option>
+                    <option value='hidden' >隐藏值:input_hidden</option>
+                    <option value='user' >用户选择:selectUser</option>
+                    <option value='define' >自定义</option>
+                </select></td>
+                <td width="20%"><input type='text' name='key_tishi[]' value='' class="s-txt"  style="width:200px"  onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                <td width="20%"><input type='text' name='key_javascript[]' value='' class="s-txt"  style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+            </tr>					<tr overstyle="on" >
+                <td width="15%"><input type="hidden" name='key[]' value='ctime'> ctime</td>
+                <td width="20%"><input type="text" name='key_name[]' value='注册时间' class="s-txt"   style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" /></td>
+                <td width="20%"><select name='key_type[]'>
+                    <option value='text' >文本框:input_text</option>
+                    <option value='select' >下拉框:select</option>
+                    <option value='radio' >单选框:radio</option>
+                    <option value='checkbox' >多选框:checkbox</option>
+                    <option value='date' selected="selected">日期插件:date</option>
+                    <option value='hidden' >隐藏值:input_hidden</option>
+                    <option value='user' >用户选择:selectUser</option>
+                    <option value='define' >自定义</option>
+                </select></td>
+                <td width="20%"><input type='text' name='key_tishi[]' value='' class="s-txt"  style="width:200px"  onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+                <td width="20%"><input type='text' name='key_javascript[]' value='' class="s-txt"  style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" ></td>
+            </tr>			</table>
+            <div class="page_btm">
+                <input type="submit" class="btn_b" value="确定" />
+            </div>
+        </form>
+    </div>-->
+    <!-- END 搜索配置 -->
+
+    <!-- START 搜索框 -->
+    <div class="form2" id='search_form' >
+        <form id="searchjob_form" method="post">
+            <dl class="lineD" id='dl_uid'>
+                <dt>职位名称：</dt>
+                <dd>
+
+
+
+                    <div class="choose-user left">
+                        <input style="display:none" name="avoidSubmitByReturn">
+                        <input event-node="search_user" event-args="name=uid&uid=&defaultValue=" value="" type="text"  class="s-txt" name="jobname" autocomplete="off"  >
+                </dd>
+            </dl>
+
+            <dl class="lineD" id='dl_ctime'>
+                <dt>发布时间：</dt>
+                <dd>
+                    <input name="createdatetime" type="text" class="s-txt" id="from_ctime_0" value='' onfocus="core.rcalendar(this,'full');" readonly="readonly" style="width:200px;"/>-
+                    <input name="uptodate" type="text" class="s-txt" id="from_ctime_1" value='' onfocus="core.rcalendar(this,'full');" readonly="readonly" style="width:200px;"/>
+
+
+                </dd>
+            </dl>
+            <div class="page_btm">
+                <input type = "reset" value = "清空" class="btn_b">&nbsp;&nbsp;
+                <input type="button" value="确定" onclick="searchJob()" class="btn_b"> &nbsp;&nbsp;<input type="button" value="关闭" class="btn_b" onclick="admin.fold('search_form')">
+            </div>
+        </form>
+    </div>
+    <!-- END 搜索框 -->
+
+    <!-- START TOOLBAR -->
+    <div class="Toolbar_inbox">
+        <!-- <div class="page right"><span>共927条</span> <a class='current'>1</a><a p='2' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=2'>2</a><a p='3' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=3'>3</a><a p='4' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=4'>4</a><a p='5' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=5'>5</a><a p='47' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=47' >..47</a><a p='2' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=2' class='next'>下一页</a></div> -->
+        <a onclick="admin.fold('search_form')" class="btn_a"><span>搜索</span></a>
+    </div>
+    <!-- END TOOLBAR -->
+
+    <!-- START LIST -->
+    <div class="list" id='list'>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+
+                <th style="width:30px;">
+                    <input type="checkbox" id="checkbox_handle" onclick="admin.checkAll(this)" value="0">
+                </th>
+
+                <th class="line_l"   >编号</th>				<th class="line_l"   >职位名称</th>				<th class="line_l"   >发布时间</th>				<th class="line_l"   >工作地点</th>				<th class="line_l"   >招聘人数</th>				<th class="line_l"   >截至时间</th>	 <th class="line_l"   >发布公司</th>			<th class="line_l"   style="width:auto;" >操作</th>		</tr>
+
+            <tr overstyle="on" v-for="job in jobList" >
+
+                <td><input type="checkbox" :value="job.id" onclick="admin.checkon(this)"  name="checkbox"></td>
+                <td >
+                   {{job.id}}					</td>					<td >
+                <a href="#">{{job.jobname}} <br/> 					</td>					<td >
+                {{job.createdatetime | dateFormat}}					</td>					<td >
+                {{job.address}}					</td>					<td >
+                {{job.jobNumber}}人					</td>					<td >
+                {{job.uptodate | dateFormat}}				</td>		<td>华为</td>			<td >
+                <a href="javascript:void(0)" @click="toEditjob(job.id)">修改</a> - <a @click="deletejob(job.id)" href="javascript:void(0)"  >删除</a> 					</td>
+            </tr><tr overstyle="on" >
+
+        </table>
+    </div>
+    <!-- END LIST -->
+
+    <!-- START BOTTOMBAR -->
+    <div class="Toolbar_inbox">
+        <div class="page right"><span>共927条</span> <a class='current'>1</a><a p='2' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=2'>2</a><a p='3' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=3'>3</a><a p='4' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=4'>4</a><a p='5' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=5'>5</a><a p='47' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=47' >..47</a><a p='2' href='/index.php?app=admin&mod=User&act=index&tabHash=index&p=2' class='next'>下一页</a></div>
+        <!-- 	<a onclick="admin.fold('search_form')" class="btn_a"><span>搜索</span></a><a onclick="admin.changeUserGroup()" class="btn_a"><span>转移用户组</span></a><a onclick="admin.delUser()" class="btn_a"><span>禁用</span></a> -->
+    </div>
+    <!-- END BOTTOMBAR -->
+</div>
 <script>
-    function deltejod(a) {
+    function reset_search() {
+        var url = $('#search_form form ').attr('action');
+        window.location.href = url;
+    }
+    Vue.filter('dateFormat',function (datestr) {
+        var dt = new Date(datestr);
+        var y = dt.getFullYear();
+        var m = dt.getMonth()+1;
+        var d = dt.getDate();
+        return `${y}-${m}-${d}`
+    })
+    var adminVue;
+    $(function () {
         $.ajax({
-            url:'/job/deleteJob?id='+a,
+            url:"/job/queryJob",
+            type:'post',
+            data:'',
+            success:function (data) {
+                adminVue = new Vue({
+                    el:"#list",
+                    data:{
+                        jobList:data
+                    }
+                })
+            }
+        })
+    })
+    function searchJob() {
+        $.ajax({
+            url:"/job/queryJob",
+            type:'post',
+            data:$("#searchjob_form").serialize(),
+            success:function (data) {
+                adminVue.jobList = data
+            }
+        })
+    }
+</script>
+<script type="text/javascript">
+    function deletejob(a) {
+        alert(a)
+        $.ajax({
+            url:'/job/deleteJob',
+            data:{
+                id:a
+            },
             success:function () {
                 location.href="/job/toJob"
             }
         })
     }
     function toEditjob(a) {
-        $.ajax({
-            url:'/job/toEditJob?id='+a
-        })
+        switch_sub_menu('118', '/job/toEditJob?id='+a)
     }
+    function switch_sub_menu(sub, url) {
+        var current_menu_sub = null;
+        if (current_menu_sub) {
+
+            $('#menu_' + current_menu_sub).addClass('submenuA').removeClass("submenuB");
+        }
+        $('#menu_' + sub).addClass('submenuB').removeClass("submenuA");
+        current_menu_sub = sub;
+        parent.MainIframe.location = url;
+    }
+    document.onkeydown=function (e) {
+        e=window.event||e;
+        var key = e.keyCode;
+        if ((e.ctrlKey && key == 82) || key == 116) {
+            parent.MainIframe.location.reload();
+            if(document.all) {
+                e.keyCode = 0;
+                e.returnValue = false;
+            }else {
+                e.cancelBubble = true;
+                e.preventDefault();
+            }
+        }
+    }
+    /**
+     * 初始化对象
+     */
+//表格样式
+    $(document).ready(function(){
+        admin.bindTrOn();});
 </script>
+
 </body>
 </html>

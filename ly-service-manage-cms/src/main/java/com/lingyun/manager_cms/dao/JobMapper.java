@@ -1,6 +1,7 @@
 package com.lingyun.manager_cms.dao;
 
 import com.lingyun.framework.domain.admin.Job;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,9 +12,9 @@ public interface JobMapper {
 
     int insertSelective(Job record);
 
-    Job selectByPrimaryKey(Integer id);
+    Job selectByPrimaryKey(@Param("id") Integer id);
 
-    int updateByPrimaryKeySelective(Job record);
+    int updateByPrimaryKeySelective(Job job);
 
     int updateByPrimaryKeyWithBLOBs(Job record);
 
