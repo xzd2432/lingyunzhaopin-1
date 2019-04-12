@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" th:src="@{/addons/theme/stv1/_static/js/jquery-1.8.3.min.js}" src="../static/addons/theme/stv1/_static/js/jquery-1.8.3.min.js" ></script>
+<body>
+<form id="editJobForm" method="post">
+    <table>
+        <tr>
+            <td>职位名称</td>
+            <td>
+                <input name="jobname" th:value="${job.jobname}">
+                <input type="hidden" name="id" th:value="${job.id}">
+            </td>
+        </tr>
+        <tr>
+            <td>工作地点</td>
+            <td>
+                <input name="address" th:value="${job.address}">
+            </td>
+        </tr>
+        <tr>
+            <td>职位薪资</td>
+            <td>
+                <input name="pay" th:value="${job.pay}">
+            </td>
+        </tr>
+        <tr>
+            <td><input type="reset" value="重置"></td>
+            <td>
+                <input type="button" value="提交" onclick="editJob()">
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    function editJob() {
+        $.ajax({
+            url:'/job/editJob',
+            type:'post',
+            data:$("#editJobForm").serialize(),
+            success:function () {
+                location.href="/job/toJob"
+            }
+        })
+    }
+</script>
+</body>
+</html>

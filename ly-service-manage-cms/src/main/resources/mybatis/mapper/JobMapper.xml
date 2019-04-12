@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lingyun.manager_cms.dao.JobMapper" >
+  <resultMap id="BaseResultMap" type="com.lingyun.framework.domain.admin.Job" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="jobname" property="jobname" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="address_details" property="addressDetails" jdbcType="VARCHAR" />
+    <result column="pay" property="pay" jdbcType="VARCHAR" />
+    <result column="min_education" property="minEducation" jdbcType="VARCHAR" />
+    <result column="job_category" property="jobCategory" jdbcType="VARCHAR" />
+    <result column="job_skill" property="jobSkill" jdbcType="VARCHAR" />
+    <result column="bright_spot" property="brightSpot" jdbcType="VARCHAR" />
+    <result column="job_number" property="jobNumber" jdbcType="INTEGER" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="createdatetime" property="createdatetime" jdbcType="TIMESTAMP" />
+    <result column="uptodate" property="uptodate" jdbcType="TIMESTAMP" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lingyun.framework.domain.admin.Job" extends="BaseResultMap" >
+    <result column="job_describe" property="jobDescribe" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, jobname, address, address_details, pay, min_education, job_category, 
+job_skill, 
+    bright_spot, job_number, department, createdatetime, uptodate, company_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    job_describe
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_job
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="queryJob" resultMap="ResultMapWithBLOBs"  >
+    select *
+    from t_job
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_job
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lingyun.framework.domain.admin.Job" >
+    insert into t_job (id, jobname, address, 
+      address_details, pay, min_education, 
+      job_category, 
+job_skill, bright_spot, 
+      job_number, department, createdatetime, 
+      uptodate, company_id, job_describe
+      )
+    values (#{id,jdbcType=INTEGER}, #{jobname,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{addressDetails,jdbcType=VARCHAR}, #{pay,jdbcType=VARCHAR}, #{minEducation,jdbcType=VARCHAR}, 
+      #{jobCategory,jdbcType=VARCHAR}, #{
+jobSkill,jdbcType=VARCHAR}, #{brightSpot,jdbcType=VARCHAR}, 
+      #{jobNumber,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, #{createdatetime,jdbcType=TIMESTAMP}, 
+      #{uptodate,jdbcType=TIMESTAMP}, #{companyId,jdbcType=INTEGER}, #{jobDescribe,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lingyun.framework.domain.admin.Job" >
+    insert into t_job
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jobname != null" >
+        jobname,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="addressDetails != null" >
+        address_details,
+      </if>
+      <if test="pay != null" >
+        pay,
+      </if>
+      <if test="minEducation != null" >
+        min_education,
+      </if>
+      <if test="jobCategory != null" >
+        job_category,
+      </if>
+      <if test="jobSkill != null" >
+        job_skill,
+      </if>
+      <if test="brightSpot != null" >
+        bright_spot,
+      </if>
+      <if test="jobNumber != null" >
+        job_number,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="createdatetime != null" >
+        createdatetime,
+      </if>
+      <if test="uptodate != null" >
+        uptodate,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="jobDescribe != null" >
+        job_describe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jobname != null" >
+        #{jobname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetails != null" >
+        #{addressDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="pay != null" >
+        #{pay,jdbcType=VARCHAR},
+      </if>
+      <if test="minEducation != null" >
+        #{minEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCategory != null" >
+        #{jobCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSkill != null" >
+        #{jobSkill,jdbcType=VARCHAR},
+      </if>
+      <if test="brightSpot != null" >
+        #{brightSpot,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNumber != null" >
+        #{jobNumber,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatetime != null" >
+        #{createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptodate != null" >
+        #{uptodate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="jobDescribe != null" >
+        #{jobDescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lingyun.framework.domain.admin.Job" >
+    update t_job
+    <set >
+      <if test="jobname != null" >
+        jobname = #{jobname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetails != null" >
+        address_details = #{addressDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="pay != null" >
+        pay = #{pay,jdbcType=VARCHAR},
+      </if>
+      <if test="minEducation != null" >
+        min_education = #{minEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCategory != null" >
+        job_category = #{jobCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSkill != null" >
+        job_skill = #{jobSkill,jdbcType=VARCHAR},
+      </if>
+      <if test="brightSpot != null" >
+        bright_spot = #{brightSpot,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNumber != null" >
+        job_number = #{jobNumber,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatetime != null" >
+        createdatetime = #{createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptodate != null" >
+        uptodate = #{uptodate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="jobDescribe != null" >
+        job_describe = #{jobDescribe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lingyun.framework.domain.admin.Job" >
+    update t_job
+    set jobname = #{jobname,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      address_details = #{addressDetails,jdbcType=VARCHAR},
+      pay = #{pay,jdbcType=VARCHAR},
+      min_education = #{minEducation,jdbcType=VARCHAR},
+      job_category = #{jobCategory,jdbcType=VARCHAR},
+      
+job_skill = #{
+jobSkill,jdbcType=VARCHAR},
+      bright_spot = #{brightSpot,jdbcType=VARCHAR},
+      job_number = #{jobNumber,jdbcType=INTEGER},
+      department = #{department,jdbcType=VARCHAR},
+      createdatetime = #{createdatetime,jdbcType=TIMESTAMP},
+      uptodate = #{uptodate,jdbcType=TIMESTAMP},
+      company_id = #{companyId,jdbcType=INTEGER},
+      job_describe = #{jobDescribe,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lingyun.framework.domain.admin.Job" >
+    update t_job
+    set jobname = #{jobname,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      address_details = #{addressDetails,jdbcType=VARCHAR},
+      pay = #{pay,jdbcType=VARCHAR},
+      min_education = #{minEducation,jdbcType=VARCHAR},
+      job_category = #{jobCategory,jdbcType=VARCHAR},
+      
+job_skill = #{
+jobSkill,jdbcType=VARCHAR},
+      bright_spot = #{brightSpot,jdbcType=VARCHAR},
+      job_number = #{jobNumber,jdbcType=INTEGER},
+      department = #{department,jdbcType=VARCHAR},
+      createdatetime = #{createdatetime,jdbcType=TIMESTAMP},
+      uptodate = #{uptodate,jdbcType=TIMESTAMP},
+      company_id = #{companyId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

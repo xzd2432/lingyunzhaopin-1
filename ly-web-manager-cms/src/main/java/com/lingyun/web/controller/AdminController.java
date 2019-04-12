@@ -5,8 +5,7 @@ import com.lingyun.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import java.util.List;
 
@@ -18,7 +17,6 @@ public class AdminController {
     private AdminService adminService;
 
     @RequestMapping("/findList")
-    @ResponseBody
     public List<Admin> findList() {
         return adminService.findList();
     }

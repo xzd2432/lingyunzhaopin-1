@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" th:src="@{/addons/theme/stv1/_static/js/jquery-1.8.3.min.js}" src="../static/addons/theme/stv1/_static/js/jquery-1.8.3.min.js" ></script>
+<style>
+    td{
+        vertical-align: middle;
+        text-align: center;
+    }
+</style>
+<body>
+<table>
+    <tr>
+        <td>职位名称</td>
+        <td>发布时间</td>
+        <td>工作地点</td>
+        <td>招聘人数</td>
+        <td>截至时间</td>
+        <td>发布公司</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="i : ${list}">
+        <td th:text="${i.jobname}">职位名称</td>
+        <td th:text="${#dates.format(i.createdatetime,'yyyy-MM-dd')}" >发布时间</td>
+        <td th:text="${i.address}">工作地点</td>
+        <td th:text="${i.jobNumber}+'人'"></td>
+        <td th:text="${#dates.format(i.uptodate,'yyyy-MM-dd')}">截至时间</td>
+        <td >华为</td>
+        <td>
+            <input type="button" value="删除" th:onclick="'deletejob('+${i.id}+')'">
+            <input type="button" value="修改" th:onclick="'toEditjob('+${i.id}+')'">
+        </td>
+    </tr>
+</table>
+<script>
+    function deltejod(a) {
+        $.ajax({
+            url:'/job/deleteJob?id='+a,
+            success:function () {
+                location.href="/job/toJob"
+            }
+        })
+    }
+    function toEditjob(a) {
+        $.ajax({
+            url:'/job/toEditJob?id='+a
+        })
+    }
+</script>
+</body>
+</html>

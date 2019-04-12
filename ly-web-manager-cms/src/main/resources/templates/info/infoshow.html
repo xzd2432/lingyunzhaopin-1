@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+    <script type="text/javascript" src="../../addons/theme/stv1/_static/js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/vue-resource.min.js"></script>
+    <title>form</title>
+    <style type="text/css">
+        #table table {
+            width: 100%;
+            font-size: 14px;
+            border: 1px solid #eee
+        }
+
+        #table {
+            padding: 0 10px;
+        }
+
+        table thead th {
+            background: #f5f5f5;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table tbody td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            border-right: 1px solid #eee;
+        }
+
+        table tbody td span {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .delete {
+            color: red;
+        }
+
+        .edit {
+            color: #008cd5;
+        }
+
+        .add {
+            border: 1px solid #eee;
+            margin: 10px 0;
+            padding: 15px;
+        }
+
+        input {
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 3px;
+            margin-right: 15px;
+        }
+
+        button {
+            background: #008cd5;
+            border: 0;
+            padding: 4px 15px;
+            border-radius: 3px;
+            color: #fff;
+        }
+
+        #mask {
+            background: rgba(0, 0, 0, .5);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 4;
+            top: 0;
+            left: 0;
+        }
+        #mask1 {
+            background: rgba(0, 0, 0, .5);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 4;
+            top: 0;
+            left: 0;
+        }
+
+        .mask {
+            width: 300px;
+            height: 250px;
+            background: rgba(255, 255, 255, 1);
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 47;
+            border-radius: 5px;
+        }
+
+        .title {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .title span {
+            float: right;
+            cursor: pointer;
+        }
+
+        .content {
+            padding: 10px;
+        }
+
+        .content input {
+            width: 270px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="table">
+    <button @click="addd">新增</button>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th><input type="checkbox"  name="checkbox"></th>
+
+            <th>ID</th>
+
+            <th>发件人</th>
+
+            <th>系统信息主题</th>
+
+            <th>发送时间</th>
+
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in newsList">
+
+            <td  width="3%"><input type="checkbox"  name="checkbox" :value="item.infid"></td>
+
+            <td width="5%">{{item.infoid}}</td>
+
+            <td width="10%">{{item.infoname}}</td>
+
+            <td width="12%">{{item.infotheme}}</td>
+
+            <td width="15%">{{item.infotdate | dateFormat}}</td>
+
+            <td width="10%"><span @click="deletelist(item.infoid)" class="delete">删除</span><span class="edit" @click="edit(item)">查看</span></td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="mask" v-if="editlist">
+        <div class="mask">
+            <div class="title">
+                详情信息
+                <span @click="editlist=false">❌</span>
+            </div>
+            <div  class="content">
+                <p>{{editDetail.infoname}}</p>
+                <p>{{editDetail.infotheme}}</p>
+                <p>{{editDetail.infotdate}}</p>
+            </div>
+        </div>
+    </div>
+    <div id="mask1" v-if="edlist">
+        <div class="mask">
+            <div class="title">
+                添加
+                <span @click="edlist=false">❌</span>
+            </div>
+            <div  class="content">
+                <input type="text" v-model="addDetail.infoname" name="infoname" value="" placeholder="发布人" />
+                <input type="text" v-model="addDetail.infotheme" name="infotheme" value="" placeholder="标题" />
+                <button @click="adddetail">新增</button>
+                <button @click="edlist=false">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+           <!--     <span @click="editlist=false">🐌</span>
+            </div>
+            <div  class="content">
+                <p>{{editDetail.infoname}}</p>
+                <p>{{editDetail.infotheme}}</p>
+                <p>{{editDetail.infotdate}}</p>
+            </div>
+        </div>
+    </div>
+    <div id="mask1" v-if="edlist">
+        <div class="mask">
+            <div class="title">
+                添加
+                <span @click="edlist=false">🐌</span>
+            </div>
+            <div  class="content">
+                <input type="text" v-model="addDetail.infoname" name="infoname" value="" placeholder="标题" />
+                <input type="text" v-model="addDetail.infotheme" name="infotheme" value="" placeholder="发布人" />
+                <input type="date" v-model="addDetail.infotdate" name="infotdate" value="" placeholder="发布时间" />
+                <button @click="adddetail">新增</button>
+                <button @click="edlist=false">取消</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<script>
+    app = new Vue({
+        el: '#table',
+        data: {
+            addDetail: {},
+            editlist: false,
+            edlist: false,
+            editDetail: {},
+            newsList:[]
+        },
+        //vue对象实例创建成功之后就会自动调用这个方法
+        //如果你想写的方法在舒适化的时候就被调用的话就要要用到created这个
+        created:function () {
+            this.$http.get('/info/infoshow').then(function (response) {
+                //处理正常的逻辑数据处理
+                this.newsList=response.body;
+            });
+        },
+        methods: {
+            //新增
+            adddetail: function () {
+                //这里的思路应该是把this.addDetail传给服务端，然后加载列表this.newsList
+                //this.newsList.push(this.addDetail)
+                $.get('/info/add',this.addDetail, function (result) {
+                    //判断是否传递成功
+                        location.reload();
+                        this.edlist=false;
+
+                });
+            },
+            //删除
+            deletelist: function (id) {
+                alert("确认删除"+id+"?")
+                $.get('/info/del', {infoid:id}, function () {
+                    location.reload();
+                });
+                //location.href="/info/del?infoid="+id;
+            },
+            //编辑
+            edit: function (item) {
+                console.log(item)
+                this.editDetail = {
+                    infoname: item.infoname,
+                    infotheme: item.infotheme,
+                    infotdate: item.infotdate,
+                }
+                this.editlist = true
+
+            },
+            addd: function () {
+                this.edlist = true
+            }
+            /*           //确认更新
+                       update: function () {
+                           //编辑的话，也是传id去服务端
+                           //axios.get('url',{ID:id}).then((res) =>{
+                           //			加载列表
+                           //})
+                           var _this = this
+                           for (var i = 0; i < _this.newsList.length; i++) {
+                               if (_this.newsList[i].id == this.editid) {
+                                   _this.newsList[i] = {
+                                       title: _this.editDetail.title,
+                                       user: _this.editDetail.user,
+                                       dates: _this.editDetail.dates,
+                                       id: this.editid
+                                   }
+                                   this.editlist = false
+                               }
+                           }
+                       }*/
+        }
+    })
+</script>
+</body>
+</html>

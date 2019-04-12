@@ -5,7 +5,7 @@ spring:
     name: ly-service-manage-cms
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://192.168.1.5:3306/zhiliandb?useUnicode=true&characterEncoding=utf-8
+      url: jdbc:mysql://47.101.129.54:3306/zhaopin?useUnicode=true&characterEncoding=utf-8
       username: root
       password: root
   data:
