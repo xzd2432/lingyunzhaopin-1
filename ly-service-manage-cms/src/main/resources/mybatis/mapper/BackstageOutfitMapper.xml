@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lingyun.manager_cms.dao.BackstageOutfitMapper" >
+  <resultMap id="BaseResultMap" type="com.lingyun.framework.domain.admin.BackstageOutfit" >
+    <id column="boid" property="boid" jdbcType="INTEGER" />
+    <result column="boname" property="boname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    boid, boname
+  </sql>
+
+  <select id="queryBoutfit" resultMap="BaseResultMap">
+    select * from backstage_outfit
+  </select>
+
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from backstage_outfit
+    where boid = #{boid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from backstage_outfit
+    where boid = #{boid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lingyun.framework.domain.admin.BackstageOutfit" >
+    insert into backstage_outfit (boid, boname)
+    values (#{boid,jdbcType=INTEGER}, #{boname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lingyun.framework.domain.admin.BackstageOutfit" >
+    insert into backstage_outfit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="boid != null" >
+        boid,
+      </if>
+      <if test="boname != null" >
+        boname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="boid != null" >
+        #{boid,jdbcType=INTEGER},
+      </if>
+      <if test="boname != null" >
+        #{boname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lingyun.framework.domain.admin.BackstageOutfit" >
+    update backstage_outfit
+    <set >
+      <if test="boname != null" >
+        boname = #{boname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where boid = #{boid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lingyun.framework.domain.admin.BackstageOutfit" >
+    update backstage_outfit
+    set boname = #{boname,jdbcType=VARCHAR}
+    where boid = #{boid,jdbcType=INTEGER}
+  </update>
+</mapper>

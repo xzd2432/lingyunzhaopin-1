@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lingyun.manager_cms.dao.BackstageUserMapper" >
+  <resultMap id="BaseResultMap" type="com.lingyun.framework.domain.admin.BackstageUser" >
+    <id column="buid" property="buid" jdbcType="INTEGER" />
+    <result column="buname" property="buname" jdbcType="VARCHAR" />
+    <result column="buiphone" property="buiphone" jdbcType="VARCHAR" />
+    <result column="bustatus" property="bustatus" jdbcType="INTEGER" />
+    <result column="buimg" property="buimg" jdbcType="VARCHAR" />
+    <result column="bucreatedate" property="bucreatedate" jdbcType="TIMESTAMP" />
+    <result column="buemail" property="buemail" jdbcType="VARCHAR" />
+    <result column="bupwd" property="bupwd" jdbcType="VARCHAR" />
+    <result column="busex" property="busex" jdbcType="VARCHAR" />
+    <result column="buoutfitid" property="buoutfitid" jdbcType="INTEGER" />
+    <result column="buip" property="buip" jdbcType="VARCHAR" />
+    <result column="buauditingstatus" property="buauditingstatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    buid, buname, buiphone, bustatus, buimg, bucreatedate, buemail, bupwd, busex, buoutfitid, 
+    buip, buauditingstatus
+  </sql>
+
+  <select id="queryBuser" resultMap="BaseResultMap">
+    select u.*,o.boname from backstage_user u,backstage_outfit o where u.buoutfitid=o.boid and bustatus=1 and buauditingstatus=2 ORDER BY  buid DESC
+  </select>
+
+  <select id="queryBuserjy" resultMap="BaseResultMap">
+    select u.*,o.boname from backstage_user u,backstage_outfit o where u.buoutfitid=o.boid and bustatus=2 ORDER BY  buid DESC
+  </select>
+
+  <select id="queryBusersp" resultMap="BaseResultMap">
+    select u.*,o.boname from backstage_user u,backstage_outfit o where u.buoutfitid=o.boid and buauditingstatus=1 ORDER BY  buid DESC
+  </select>
+
+  <update id="updspstatus1">
+    update backstage_user
+    set buauditingstatus=3 where buid = ${id}
+  </update>
+
+  <update id="updspstatus">
+    update backstage_user
+    set buauditingstatus=2 where buid = ${id}
+  </update>
+
+  <update id="updstatus">
+     update backstage_user
+    set bustatus=2 where buid = ${id}
+  </update>
+  <update id="updstatus1">
+     update backstage_user
+    set bustatus=1 where buid = ${id}
+  </update>
+
+
+
+
+
+
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from backstage_user
+    where buid = #{buid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from backstage_user
+    where buid = #{buid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lingyun.framework.domain.admin.BackstageUser" >
+    insert into backstage_user ( buname, buiphone,
+      bustatus, buimg, bucreatedate, 
+      buemail, bupwd, busex, 
+      buoutfitid, buip, buauditingstatus
+      )
+    values ( #{buname,jdbcType=VARCHAR}, #{buiphone,jdbcType=VARCHAR},
+      1, #{buimg,jdbcType=VARCHAR}, now(),
+      #{buemail,jdbcType=VARCHAR}, #{bupwd,jdbcType=VARCHAR}, #{busex,jdbcType=VARCHAR}, 
+      #{buoutfitid,jdbcType=INTEGER}, #{buip,jdbcType=VARCHAR}, 1
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lingyun.framework.domain.admin.BackstageUser" >
+    insert into backstage_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buid != null" >
+        buid,
+      </if>
+      <if test="buname != null" >
+        buname,
+      </if>
+      <if test="buiphone != null" >
+        buiphone,
+      </if>
+      <if test="bustatus != null" >
+        bustatus,
+      </if>
+      <if test="buimg != null" >
+        buimg,
+      </if>
+      <if test="bucreatedate != null" >
+        bucreatedate,
+      </if>
+      <if test="buemail != null" >
+        buemail,
+      </if>
+      <if test="bupwd != null" >
+        bupwd,
+      </if>
+      <if test="busex != null" >
+        busex,
+      </if>
+      <if test="buoutfitid != null" >
+        buoutfitid,
+      </if>
+      <if test="buip != null" >
+        buip,
+      </if>
+      <if test="buauditingstatus != null" >
+        buauditingstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buid != null" >
+        #{buid,jdbcType=INTEGER},
+      </if>
+      <if test="buname != null" >
+        #{buname,jdbcType=VARCHAR},
+      </if>
+      <if test="buiphone != null" >
+        #{buiphone,jdbcType=VARCHAR},
+      </if>
+      <if test="bustatus != null" >
+        #{bustatus,jdbcType=INTEGER},
+      </if>
+      <if test="buimg != null" >
+        #{buimg,jdbcType=VARCHAR},
+      </if>
+      <if test="bucreatedate != null" >
+        #{bucreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buemail != null" >
+        #{buemail,jdbcType=VARCHAR},
+      </if>
+      <if test="bupwd != null" >
+        #{bupwd,jdbcType=VARCHAR},
+      </if>
+      <if test="busex != null" >
+        #{busex,jdbcType=VARCHAR},
+      </if>
+      <if test="buoutfitid != null" >
+        #{buoutfitid,jdbcType=INTEGER},
+      </if>
+      <if test="buip != null" >
+        #{buip,jdbcType=VARCHAR},
+      </if>
+      <if test="buauditingstatus != null" >
+        #{buauditingstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lingyun.framework.domain.admin.BackstageUser" >
+    update backstage_user
+    <set >
+      <if test="buname != null" >
+        buname = #{buname,jdbcType=VARCHAR},
+      </if>
+      <if test="buiphone != null" >
+        buiphone = #{buiphone,jdbcType=VARCHAR},
+      </if>
+      <if test="bustatus != null" >
+        bustatus = #{bustatus,jdbcType=INTEGER},
+      </if>
+      <if test="buimg != null" >
+        buimg = #{buimg,jdbcType=VARCHAR},
+      </if>
+      <if test="bucreatedate != null" >
+        bucreatedate = #{bucreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buemail != null" >
+        buemail = #{buemail,jdbcType=VARCHAR},
+      </if>
+      <if test="bupwd != null" >
+        bupwd = #{bupwd,jdbcType=VARCHAR},
+      </if>
+      <if test="busex != null" >
+        busex = #{busex,jdbcType=VARCHAR},
+      </if>
+      <if test="buoutfitid != null" >
+        buoutfitid = #{buoutfitid,jdbcType=INTEGER},
+      </if>
+      <if test="buip != null" >
+        buip = #{buip,jdbcType=VARCHAR},
+      </if>
+      <if test="buauditingstatus != null" >
+        buauditingstatus = #{buauditingstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where buid = #{buid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lingyun.framework.domain.admin.BackstageUser" >
+    update backstage_user
+    set buname = #{buname,jdbcType=VARCHAR},
+      buiphone = #{buiphone,jdbcType=VARCHAR},
+      buimg = #{buimg,jdbcType=VARCHAR},
+      buemail = #{buemail,jdbcType=VARCHAR},
+      bupwd = #{bupwd,jdbcType=VARCHAR},
+      busex = #{busex,jdbcType=VARCHAR},
+      buoutfitid = #{buoutfitid,jdbcType=INTEGER}
+    where buid = #{buid,jdbcType=INTEGER}
+  </update>
+</mapper>

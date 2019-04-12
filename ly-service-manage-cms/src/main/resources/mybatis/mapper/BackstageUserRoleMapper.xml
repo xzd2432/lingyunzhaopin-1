@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lingyun.manager_cms.dao.BackstageUserRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.lingyun.framework.domain.admin.BackstageUserRole" >
+    <id column="burid" property="burid" jdbcType="INTEGER" />
+    <result column="bur_userid" property="burUserid" jdbcType="INTEGER" />
+    <result column="bur_roleid" property="burRoleid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    burid, bur_userid, bur_roleid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from backstage_user_role
+    where burid = #{burid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from backstage_user_role
+    where burid = #{burid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lingyun.framework.domain.admin.BackstageUserRole" >
+    insert into backstage_user_role (burid, bur_userid, bur_roleid
+      )
+    values (#{burid,jdbcType=INTEGER}, #{burUserid,jdbcType=INTEGER}, #{burRoleid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lingyun.framework.domain.admin.BackstageUserRole" >
+    insert into backstage_user_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="burid != null" >
+        burid,
+      </if>
+      <if test="burUserid != null" >
+        bur_userid,
+      </if>
+      <if test="burRoleid != null" >
+        bur_roleid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="burid != null" >
+        #{burid,jdbcType=INTEGER},
+      </if>
+      <if test="burUserid != null" >
+        #{burUserid,jdbcType=INTEGER},
+      </if>
+      <if test="burRoleid != null" >
+        #{burRoleid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lingyun.framework.domain.admin.BackstageUserRole" >
+    update backstage_user_role
+    <set >
+      <if test="burUserid != null" >
+        bur_userid = #{burUserid,jdbcType=INTEGER},
+      </if>
+      <if test="burRoleid != null" >
+        bur_roleid = #{burRoleid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where burid = #{burid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lingyun.framework.domain.admin.BackstageUserRole" >
+    update backstage_user_role
+    set bur_userid = #{burUserid,jdbcType=INTEGER},
+      bur_roleid = #{burRoleid,jdbcType=INTEGER}
+    where burid = #{burid,jdbcType=INTEGER}
+  </update>
+</mapper>

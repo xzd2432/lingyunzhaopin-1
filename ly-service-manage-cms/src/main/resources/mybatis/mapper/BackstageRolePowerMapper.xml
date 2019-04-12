@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lingyun.manager_cms.dao.BackstageRolePowerMapper" >
+  <resultMap id="BaseResultMap" type="com.lingyun.framework.domain.admin.BackstageRolePower" >
+    <id column="brpid" property="brpid" jdbcType="INTEGER" />
+    <result column="brp_roleid" property="brpRoleid" jdbcType="INTEGER" />
+    <result column="brp_powerid" property="brpPowerid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    brpid, brp_roleid, brp_powerid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from backstage_role_power
+    where brpid = #{brpid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from backstage_role_power
+    where brpid = #{brpid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lingyun.framework.domain.admin.BackstageRolePower" >
+    insert into backstage_role_power (brpid, brp_roleid, brp_powerid
+      )
+    values (#{brpid,jdbcType=INTEGER}, #{brpRoleid,jdbcType=INTEGER}, #{brpPowerid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lingyun.framework.domain.admin.BackstageRolePower" >
+    insert into backstage_role_power
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="brpid != null" >
+        brpid,
+      </if>
+      <if test="brpRoleid != null" >
+        brp_roleid,
+      </if>
+      <if test="brpPowerid != null" >
+        brp_powerid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="brpid != null" >
+        #{brpid,jdbcType=INTEGER},
+      </if>
+      <if test="brpRoleid != null" >
+        #{brpRoleid,jdbcType=INTEGER},
+      </if>
+      <if test="brpPowerid != null" >
+        #{brpPowerid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lingyun.framework.domain.admin.BackstageRolePower" >
+    update backstage_role_power
+    <set >
+      <if test="brpRoleid != null" >
+        brp_roleid = #{brpRoleid,jdbcType=INTEGER},
+      </if>
+      <if test="brpPowerid != null" >
+        brp_powerid = #{brpPowerid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where brpid = #{brpid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lingyun.framework.domain.admin.BackstageRolePower" >
+    update backstage_role_power
+    set brp_roleid = #{brpRoleid,jdbcType=INTEGER},
+      brp_powerid = #{brpPowerid,jdbcType=INTEGER}
+    where brpid = #{brpid,jdbcType=INTEGER}
+  </update>
+</mapper>
