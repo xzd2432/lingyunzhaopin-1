@@ -1,0 +1,262 @@
+<style media="screen">
+    body{background: #fff;}
+
+</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="../../apps/admin/_static/css/admin.css" rel="stylesheet" type="text/css">
+    <script>
+        /**
+         * 全局变量
+         */
+        var SITE_URL  = '../';
+        var THEME_URL = '../addons/theme/stv1/_static';
+        var APPNAME   = 'admin';
+        var UPLOAD_URL ='../data/upload';
+        var MID		  = '941';
+        var UID		  = '941';
+        var initNums  =  '140';
+        // Js语言变量
+        var LANG = new Array();
+        var info = {icon:0,time:1800,btn:false,title:'',closeBtn:0};
+        var success = {icon:1,time:1800,btn:false,title:'',closeBtn:0};
+        var error = {icon:2,time:1800,btn:false,title:'',closeBtn:0};
+    </script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/core.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/module.js"></script>
+    <script src="../addons/theme/stv1/_static/js/common.js"></script>
+    <script src="../addons/theme/stv1/_static/js/module.common.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/admin.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/ui.layer.js"></script>
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+    <!--非admin应用的后台js脚本统一写在  模板风格对应的app目录下的admin.js中-->
+</head>
+<body>
+<div id="container" class="so_main">
+    <!-- START TAB框 -->
+    <div class="tit_tab">
+        <ul>
+            <li><a href="/back/showUser">列表</a></li><li><a href="/back/showUser2" >禁用</a></li><li><a href="/back/showUser3" class="on" >审批</a></li><li><a href="/back/queryOutfit" >添加</a></li><li><a href="" >导入</a></li><li><a href="" >导出</a></li>
+            <!--<li style="float:right">
+                <a onclick="admin.fold('page_config')">[页面配置]</a>
+            </li>
+            <li style="float:right"><a onclick="admin.fold('search_config')">[搜索配置]</a></li>-->
+            <!-- 禁用 -->
+        </ul>
+    </div>
+    <!-- END TAB框 -->
+    <!-- START 搜索框 -->
+    <!--<div class="form2" id='search_form' >
+        <form action="http://try.51eduline.com/index.php?app=admin&mod=User&act=dellist&dosearch=1" method="post">
+            <dl class="lineD" id='dl_id'>
+                <dt>用户uid：</dt>
+                <dd>
+
+                    <input name="id" id="form_id" type="text" value=""  class='s-txt' style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" >
+                </dd>
+            </dl>
+            <dl class="lineD" id='dl_uid'>
+                <dt>用户名称：</dt>
+                <dd>
+                    <div class="choose-user left">
+                        <input style="display:none" name="avoidSubmitByReturn">
+                        <input type="hidden" rel="uids" id="search_uids" name="uid" value="" >
+                        <input event-node="search_user" event-args="name=uid&uid=&defaultValue=" value="" type="text" onfocus="this.className='s-txt-focus'" onblur="this.className='s-txt'" class="s-txt" name="" autocomplete="off"  >
+                        <script type="text/javascript">
+                            M.addEventFns({
+                                search_user:{
+                                    load:function(){
+                                        var obj = $(this);
+                                        if("undefined" == typeof(core.searchUser)){
+                                            core.plugFunc('searchUser',function(){
+                                                core.searchUser.init(obj,'0','0','','0');
+                                                core.searchUser._stopUser();
+                                            });
+                                        }
+                                    },
+                                    click:function(){
+                                        var args = M.getEventArgs(this);
+                                        if(this.value == args.defaultValue){
+                                            this.value = ''
+                                        };
+                                        var obj = $(this);
+                                        core.searchUser.init(obj,'0','0','','0');
+                                    },
+                                    blur: function() {
+                                        var args = M.getEventArgs(this);
+                                        if(this.value == '' || this.value ==args.defaultValue) {
+                                            this.value = args.defaultValue;
+                                            core.searchUser.inputReset();
+                                        }
+                                    },
+                                    focus: function() {
+                                        var args = M.getEventArgs(this);
+                                        if(this.value == args.defaultValue) {
+                                            this.value = '';
+                                        }
+                                        core.searchUser.init($(this),'0','0','','0');
+                                    }
+                                }
+                            });
+                        </script></div>
+                </dd>
+            </dl>
+            <dl class="lineD" id='dl_email'>
+                <dt>邮箱：</dt>
+                <dd>
+
+                    <input name="email" id="form_email" type="text" value=""  class='s-txt' style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" >
+                </dd>
+            </dl>
+            <dl class="lineD" id='dl_phone'>
+                <dt>手机号：</dt>
+                <dd>
+
+                    <input name="phone" id="form_phone" type="text" value=""  class='s-txt' style="width:200px" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" >
+                </dd>
+            </dl>
+            <dl class="lineD" id='dl_sex'>
+                <dt>性别：</dt>
+                <dd>
+                    <label><input type="radio" name="sex" value='0'  checked="checked"  >不限 </label> 										<label><input type="radio" name="sex" value='1'   >男 </label> 										<label><input type="radio" name="sex" value='2'   >女 </label>
+                </dd>
+            </dl>
+            <dl class="lineD" id='dl_user_group'>
+                <dt>用户组：</dt>
+                <dd>
+                    <select name="user_group" id="form_user_group"  class='s-select' style="width:200px">
+                        <option value="1" >管理员</option>
+                        <option value="2" >学生</option>
+                        <option value="3" >教师</option>
+                        <option value="4" >机构用户</option>
+                        <option value="6" >首页管理员</option>
+                        <option value="17" >系统管理员</option>
+                        <option value="18" >统计管理员</option>
+                        <option value="19" >运营管理员</option>
+                        <option value="20" >用户管理员</option>
+                        <option value="21" >课堂管理员</option>
+                        <option value="22" >财务管理员</option>
+                        <option value="23" >商城管理员</option>
+                        <option value="24" >2级运营</option>
+                        <option value="25" >体验用户</option>
+                        <option value="0"  selected="selected" >不限</option>
+                    </select>
+                </dd>
+            </dl>
+            <dl class="lineD" id='dl_ctime'>
+                <dt>注册时间：</dt>
+                <dd>
+                    <input name="ctime[]" type="text" class="s-txt" id="from_ctime_0" value='' onfocus="core.rcalendar(this,'full');" readonly="readonly" style="width:200px;"/>					 — 										<input name="ctime[]" type="text" class="s-txt" id="from_ctime_1" value='' onfocus="core.rcalendar(this,'full');" readonly="readonly" style="width:200px;"/>
+                </dd>
+            </dl>
+            <div class="page_btm">
+                <input type = "reset" value = "清空" class="btn_b" onclick="reset_search()">&nbsp;&nbsp;
+                <input type="submit" value="确定" class="btn_b"> &nbsp;&nbsp;<input type="button" value="关闭" class="btn_w" onclick="admin.fold('search_form')">
+            </div>
+        </form>
+    </div>-->
+    <!-- END 搜索框 -->
+
+    <!-- START TOOLBAR -->
+   <!-- <div class="Toolbar_inbox">
+        &lt;!&ndash; <div class="page right"><span>共2条</span></div> &ndash;&gt;
+        <a onclick="admin.fold('search_form')" class="btn_a"><span>搜索</span></a><a onclick="admin.rebackUser()" class="btn_a"><span>恢复</span></a>
+    </div>-->
+    <!-- END TOOLBAR -->
+
+    <!-- START LIST -->
+    <div class="list" id='list4'>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th style="width:30px;">
+                    <input type="checkbox" id="checkbox_handle" onclick="admin.checkAll(this)" value="0">
+                </th>
+
+                <th class="line_l"   >编号</th>
+                <th class="line_l"   >用户名称</th>
+                <th class="line_l"   >手机号</th>
+                <th class="line_l"   >用户组</th>
+                <th class="line_l"   >审核</th>
+                <th class="line_l"   >所属机构</th>
+                <th class="line_l"   >注册时间</th>
+                <th class="line_l"   >注册IP</th>
+                <th class="line_l"   style="width:auto;" >操作</th>
+            </tr>
+            <tr overstyle="on" id="tr203"  v-for="l in list">
+                <td><input type="checkbox" value="203" onclick="admin.checkon(this)"  name="checkbox"></td>
+                <td >{{l.buid}}</td>
+                <td >{{l.buname}} <br/></td>
+                <td >{{l.buiphone}}</td>
+                <td >体验用户<br/>管理员</td>
+                <td >{{l.buauditingstatus}}</td>
+                <td >{{l.boname}}</td>
+                <td >{{l.bucreatedate}}</td>
+                <td >{{l.buip}}</td>
+                <td >
+                    <a @click="updspstatus(l.buid)">通过</a> -
+                    <a @click="updspstatus1(l.buid)">驳回</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- END LIST -->
+
+    <!-- START BOTTOMBAR -->
+   <!-- <div class="Toolbar_inbox">
+        <div class="page right"><span>共2条</span></div>
+        &lt;!&ndash; 	<a onclick="admin.fold('search_form')" class="btn_a"><span>搜索</span></a><a onclick="admin.rebackUser()" class="btn_a"><span>恢复</span></a> &ndash;&gt;
+    </div>-->
+    <!-- END BOTTOMBAR -->
+</div>
+<script>
+
+    var adminVue;
+    $(function() {
+        $.ajax({
+            type:"post",
+            url:"/back/queryBusersp",
+            data:"",
+            dataType:"json",
+            success:function (res) {
+                adminVue = new Vue({
+                    el: '#list4',
+                    data: {
+                        list: res
+                    }/*,
+                    filters: {
+                        dateFormat: function (date) {
+                            return formatDate(date, 'yyyy-MM-dd');
+                        }
+                    }*/
+                })
+            },
+            error:function () {
+                alert("系统错误，请联系管理员！");
+            }
+        })
+    })
+    function updspstatus(id){
+        $.ajax({
+            type:"post",
+            url:"updspstatus?id="+id,
+            success:function () {
+                location.href="/back/showUser3";
+            }
+        })
+    }
+    function updspstatus1(id){
+        $.ajax({
+            type:"post",
+            url:"updspstatus1?id="+id,
+            success:function () {
+                location.href="/back/showUser3";
+            }
+        })
+    }
+</script>
+
+</body>
+</html>

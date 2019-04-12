@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="../apps/admin/_static/css/admin.css" rel="stylesheet" type="text/css">
+    <script>
+        /**
+         * 全局变量
+         */
+        var SITE_URL  = 'http://try.51eduline.com';
+        var THEME_URL = 'http://try.51eduline.com/addons/theme/stv1/_static';
+        var APPNAME   = 'admin';
+        var UPLOAD_URL ='http://try.51eduline.com/data/upload';
+        var MID		  = '941';
+        var UID		  = '941';
+        var initNums  =  '140';
+        // Js语言变量
+        var LANG = new Array();
+        var info = {icon:0,time:1800,btn:false,title:'',closeBtn:0};
+        var success = {icon:1,time:1800,btn:false,title:'',closeBtn:0};
+        var error = {icon:2,time:1800,btn:false,title:'',closeBtn:0};
+    </script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/core.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/module.js"></script>
+    <script src="../addons/theme/stv1/_static/js/common.js"></script>
+    <script src="../theme/stv1/_static/js/module.common.js"></script>
+    <script type="text/javascript" src="../apps/admin/_static/js/admin.js"></script>
+    <script type="text/javascript" src="../addons/theme/stv1/_static/js/ui.layer.js"></script>
+    <!--非admin应用的后台js脚本统一写在  模板风格对应的app目录下的admin.js中-->
+</head>
+<body>
+<div id="container" class="so_main">
+    <div class="tit_tab">
+        <!-- START TAB框 -->
+        <ul>
+            <li><a href="/back/showUser"  >列表</a></li><li><a href="/back/showUser2"  >禁用</a></li><li><a href="/back/showUser3" >审批</a></li><li><a href="/back/queryOutfit" class="on" >添加</a></li><li><a href=""  >导入</a></li><li><a href=""  >导出</a></li>
+            <li style="float:right"><a href="javascript:" onclick="admin.fold('page_config')">[页面配置]</a>
+            </li>
+        </ul>                    <!-- END TAB框 -->
+
+        <!-- START PAGE_CONFIG -->
+        <img id="showimg" width="80px" height="120px" >
+        <form id="uploadForm" enctype="multipart/form-data">
+            选择图片<input type="file" name="artImg"  onchange="uploadImg()" id="tupian"/><br>
+            <div id="edittb">
+                <input type="button" class="btn_b" value="确认使用" onclick = "savePhoto()"/>
+            </div>
+        </form>
+        <form method="POST" id="addBackUser" onsubmit = "return admin.addUserSubmitCheck(this);" name='detail_form' style="margin-top:5px">
+            <div class="form2">
+                <dl class="lineD" id='dl_uname'>
+                    <dt><font color="red"> * </font>用户名：</dt>
+                    <dd>
+                        <input name="buname" id="form_uname" type="text" placeholder="必填"  class="s-txt" style='width:200px'>
+                        <input type="hidden" name="buimg">
+                    </dd>
+                </dl>
+                <dl class="lineD" id='dl_email'>
+                    <dt>邮箱：</dt>
+                    <dd>
+                        <input name="buemail" id="form_email" type="text" placeholder="QQ邮箱\163邮箱等"  class="s-txt" style='width:200px' onblur="aa()" >
+                    </dd>
+                </dl>
+                <dl class="lineD" id='dl_phone'>
+                    <dt>手机号：</dt>
+                    <dd>
+                        <input name="buiphone" id="form_phone" type="text" placeholder="11位有效手机号"  class="s-txt" style='width:200px' onblur="bb()"  >
+                    </dd>
+                </dl>
+                <dl class="lineD" id='dl_password'>
+                    <dt><font color="red"> * </font>密码：</dt>
+                    <dd>
+                        <input name="bupwd" id="form_password" type="text" placeholder="必填"  class="s-txt" style='width:200px' >
+                    </dd>
+                </dl>
+                <dl class="lineD" id='dl_sex'>
+                    <dt>性别：</dt>
+                    <dd>
+                        <label><input type="radio" name="busex" value='1'  checked="checked"  >男 </label>
+                        <label><input type="radio" name="busex" value='2'   >女 </label>
+                        <br />
+                    </dd>
+                </dl>
+                <dl class="lineD" id='dl_school'>
+                    <dt>机构选择：</dt>
+                    <dd>
+                        <select name="buoutfitid" id="form_school" >
+                            <option th:each="u: ${outfit}" th:value="${u.boid}" th:text="${u.boname}"></option>
+                        </select>
+                    </dd>
+                </dl>
+                <!--<dl class="lineD" id='dl_user_group'>
+                    <dt><font color="red"> * </font>用户组：</dt>
+                    <dd>
+                        <label><input type="checkbox" name="user_group[]" value='1'   >管理员 </label>
+                        <label><input type="checkbox" name="user_group[]" value='2'  checked="checked"  >学生 </label>
+                        <label><input type="checkbox" name="user_group[]" value='6'   >首页管理员 </label>
+                        <label><input type="checkbox" name="user_group[]" value='17'   >系统管理员 </label>
+                        <label><input type="checkbox" name="user_group[]" value='18'   >统计管理员 </label>
+                        <label><input type="checkbox" name="user_group[]" value='19'   >运营管理员 </label>
+                        <label><input type="checkbox" name="user_group[]" value='20'   >用户管理员 </label>
+                        <label><input type="checkbox" name="user_group[]" value='21'   >课堂管理员 </label>
+                        <label><input type="checkbox" name="user_group[]" value='22'   >财务管理员 </label>
+                        <label><input type="checkbox" name="user_group[]" value='23'   >商城管理员 </label>
+                        <label><input type="checkbox" name="user_group[]" value='24'   >2级运营 </label>
+                        <label><input type="checkbox" name="user_group[]" value='25'   >体验用户 </label>
+                    </dd>
+                </dl>-->
+                <div class="page_btm" >
+                    <input type='text' style="display:none">
+                    <input type="button" class="btn_b" value="保存" id='form_submit' onclick = "submitform()"/>
+                </div>
+            </div>
+        </form>
+
+        <!-- END CONFIG_FORM -->
+    </div>
+    <script>
+        function submitform(){
+            var a= document.getElementById("form_uname").value;
+            var b=document.getElementById("form_password").value;
+            var c=/^\s*$/
+            if(c.test(a)|| c.test(b)){
+               alert("请输入用户名密码")
+            }else{
+            $.ajax({
+                type:"post",
+                url:"/back/addBackstageUser",
+                data:$("#addBackUser").serialize(),
+                success:function () {
+                    alert("添加成功")
+                    location.href="/back/showUser"
+                }
+            })
+            }
+        }
+
+        function savePhoto(){
+            var formData = new FormData($('#uploadForm')[0]);
+            $.ajax({
+                type: 'post',
+                url: "upImg",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+            }).success(function (data) {
+                if(data!="1"){
+                    $("#showimg").prop('src',data)
+                    $("[name='buimg']").val(data);
+                }
+                else{
+                    alert("请选择正确的图片格式")
+                }
+
+            });
+        }
+        function uploadImg() {
+            var _name, _fileName, personsFile;
+            personsFile = document.getElementById("tupian");
+            _name = tupian.value;
+            _fileName = _name.substring(_name.lastIndexOf(".") + 1).toLowerCase();
+            if (_fileName !== "png" && _fileName !== "jpg") {
+                alert("上传图片格式不正确，请重新上传");
+            }
+        }
+
+        function aa(){
+            var a=/^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/;
+            var b=document.getElementById('form_email').value;
+            var c=/^\s*$/
+            if (!c.test(b)){
+                if (!a.test(b)){
+                    alert("请输入正确邮箱")
+                }
+            }
+
+        }
+        function bb(){
+            var a=/^1(3|4|5|6|7|8)\d{9}$/;
+            var b=document.getElementById('form_phone').value;
+            var c=/^\s*$/
+            if (!c.test(b)) {
+                if (!a.test(b)) {
+                    alert("请输入正确手机号")
+                }
+            }
+        }
+
+    </script>
+    <script type="text/javascript">
+        document.onkeydown=function (e) {
+            e=window.event||e;
+            var key = e.keyCode;
+            if ((e.ctrlKey && key == 82) || key == 116) {
+                parent.MainIframe.location.reload();
+                if(document.all) {
+                    e.keyCode = 0;
+                    e.returnValue = false;
+                }else {
+                    e.cancelBubble = true;
+                    e.preventDefault();
+                }
+            }
+        }
+        /**
+         * 初始化对象
+         */
+//表格样式
+        $(document).ready(function(){
+            admin.bindTrOn();});
+
+
+
+    </script>
+
+</body>
+</html>
