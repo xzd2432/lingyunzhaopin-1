@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lingyun.manager_cms.dao.BackstageRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.lingyun.framework.domain.admin.BackstageRole" >
+    <id column="broleid" property="broleid" jdbcType="INTEGER" />
+    <result column="brolename" property="brolename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    broleid, brolename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from backstage_role
+    where broleid = #{broleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from backstage_role
+    where broleid = #{broleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lingyun.framework.domain.admin.BackstageRole" >
+    insert into backstage_role (broleid, brolename)
+    values (#{broleid,jdbcType=INTEGER}, #{brolename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lingyun.framework.domain.admin.BackstageRole" >
+    insert into backstage_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="broleid != null" >
+        broleid,
+      </if>
+      <if test="brolename != null" >
+        brolename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="broleid != null" >
+        #{broleid,jdbcType=INTEGER},
+      </if>
+      <if test="brolename != null" >
+        #{brolename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lingyun.framework.domain.admin.BackstageRole" >
+    update backstage_role
+    <set >
+      <if test="brolename != null" >
+        brolename = #{brolename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where broleid = #{broleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lingyun.framework.domain.admin.BackstageRole" >
+    update backstage_role
+    set brolename = #{brolename,jdbcType=VARCHAR}
+    where broleid = #{broleid,jdbcType=INTEGER}
+  </update>
+</mapper>

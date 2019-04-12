@@ -23,8 +23,6 @@ public class Job implements Serializable {
 
     private String jobCategory;
 
-    private String jobSkill;
-
     private String brightSpot;
 
     private Integer jobNumber;
@@ -32,7 +30,7 @@ public class Job implements Serializable {
     private String department;
 
     private Date createdatetime;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd-HH-mm-ss-sss")
     private Date uptodate;
 
     private Integer companyId;
@@ -93,14 +91,6 @@ public class Job implements Serializable {
 
     public void setJobCategory(String jobCategory) {
         this.jobCategory = jobCategory == null ? null : jobCategory.trim();
-    }
-
-    public String getjobSkill() {
-        return jobSkill;
-    }
-
-    public void setjobSkill(String jobSkill) {
-        this.jobSkill = jobSkill == null ? null : jobSkill.trim();
     }
 
     public String getBrightSpot() {

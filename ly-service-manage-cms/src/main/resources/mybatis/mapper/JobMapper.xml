@@ -9,7 +9,6 @@
     <result column="pay" property="pay" jdbcType="VARCHAR" />
     <result column="min_education" property="minEducation" jdbcType="VARCHAR" />
     <result column="job_category" property="jobCategory" jdbcType="VARCHAR" />
-    <result column="job_skill" property="jobSkill" jdbcType="VARCHAR" />
     <result column="bright_spot" property="brightSpot" jdbcType="VARCHAR" />
     <result column="job_number" property="jobNumber" jdbcType="INTEGER" />
     <result column="department" property="department" jdbcType="VARCHAR" />
@@ -21,8 +20,7 @@
     <result column="job_describe" property="jobDescribe" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, jobname, address, address_details, pay, min_education, job_category, 
-job_skill, 
+    id, jobname, address, address_details, pay, min_education, job_category,
     bright_spot, job_number, department, createdatetime, uptodate, company_id
   </sql>
   <sql id="Blob_Column_List" >
@@ -49,14 +47,13 @@ job_skill,
     insert into t_job (id, jobname, address, 
       address_details, pay, min_education, 
       job_category, 
-job_skill, bright_spot, 
+     bright_spot,
       job_number, department, createdatetime, 
       uptodate, company_id, job_describe
       )
     values (#{id,jdbcType=INTEGER}, #{jobname,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{addressDetails,jdbcType=VARCHAR}, #{pay,jdbcType=VARCHAR}, #{minEducation,jdbcType=VARCHAR}, 
-      #{jobCategory,jdbcType=VARCHAR}, #{
-jobSkill,jdbcType=VARCHAR}, #{brightSpot,jdbcType=VARCHAR}, 
+      #{jobCategory,jdbcType=VARCHAR},  #{brightSpot,jdbcType=VARCHAR},
       #{jobNumber,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, #{createdatetime,jdbcType=TIMESTAMP}, 
       #{uptodate,jdbcType=TIMESTAMP}, #{companyId,jdbcType=INTEGER}, #{jobDescribe,jdbcType=LONGVARCHAR}
       )
@@ -84,9 +81,6 @@ jobSkill,jdbcType=VARCHAR}, #{brightSpot,jdbcType=VARCHAR},
       </if>
       <if test="jobCategory != null" >
         job_category,
-      </if>
-      <if test="jobSkill != null" >
-        job_skill,
       </if>
       <if test="brightSpot != null" >
         bright_spot,
@@ -132,9 +126,6 @@ jobSkill,jdbcType=VARCHAR}, #{brightSpot,jdbcType=VARCHAR},
       <if test="jobCategory != null" >
         #{jobCategory,jdbcType=VARCHAR},
       </if>
-      <if test="jobSkill != null" >
-        #{jobSkill,jdbcType=VARCHAR},
-      </if>
       <if test="brightSpot != null" >
         #{brightSpot,jdbcType=VARCHAR},
       </if>
@@ -179,9 +170,6 @@ jobSkill,jdbcType=VARCHAR}, #{brightSpot,jdbcType=VARCHAR},
       <if test="jobCategory != null" >
         job_category = #{jobCategory,jdbcType=VARCHAR},
       </if>
-      <if test="jobSkill != null" >
-        job_skill = #{jobSkill,jdbcType=VARCHAR},
-      </if>
       <if test="brightSpot != null" >
         bright_spot = #{brightSpot,jdbcType=VARCHAR},
       </if>
@@ -214,9 +202,6 @@ jobSkill,jdbcType=VARCHAR}, #{brightSpot,jdbcType=VARCHAR},
       pay = #{pay,jdbcType=VARCHAR},
       min_education = #{minEducation,jdbcType=VARCHAR},
       job_category = #{jobCategory,jdbcType=VARCHAR},
-      
-job_skill = #{
-jobSkill,jdbcType=VARCHAR},
       bright_spot = #{brightSpot,jdbcType=VARCHAR},
       job_number = #{jobNumber,jdbcType=INTEGER},
       department = #{department,jdbcType=VARCHAR},
@@ -234,9 +219,6 @@ jobSkill,jdbcType=VARCHAR},
       pay = #{pay,jdbcType=VARCHAR},
       min_education = #{minEducation,jdbcType=VARCHAR},
       job_category = #{jobCategory,jdbcType=VARCHAR},
-      
-job_skill = #{
-jobSkill,jdbcType=VARCHAR},
       bright_spot = #{brightSpot,jdbcType=VARCHAR},
       job_number = #{jobNumber,jdbcType=INTEGER},
       department = #{department,jdbcType=VARCHAR},
